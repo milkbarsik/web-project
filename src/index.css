@@ -25,4 +25,22 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+	font-size: 1.8rem;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #202020;
+  cursor: pointer;
+	transition: 0.2s;
+}
+button:hover {
+  border-color: rgb(206, 203, 255);
+	color: rgb(206, 203, 255);
+	transform: translateY(-2px);
 }
