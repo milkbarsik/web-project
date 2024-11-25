@@ -1,4 +1,5 @@
 import './App.css'
+import styles from './App.module.css';
 import AppRouter from './components/appRouter/appRouter'
 import Footer from './components/footer'
 import Header from './components/header'
@@ -6,9 +7,11 @@ import Header from './components/header'
 function App() {
 
   return (
-    <div>
+    <div className={styles.wrapper}>
 			<Header />
-			<AppRouter />
+			<div className={styles.content}>
+				<AppRouter />
+			</div>
 			<Footer />
 		</div>
   )
