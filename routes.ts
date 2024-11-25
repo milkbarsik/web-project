@@ -1,6 +1,6 @@
 import React from 'react';
 import MainPage from './src/components/main-page';
-import Quiz from './src/components/main-page/components/quiz';
+import Quiz from './src/components/quiz';
 
 type Troutes = {
 	Component: React.FC<any>;
@@ -14,7 +14,6 @@ export const routes:Troutes[] = [
 	},
 	{
 		Component: Quiz,
-		path: '/quiz',
+		path: '/quiz/:id/:name',
 	}
-	
 ]
