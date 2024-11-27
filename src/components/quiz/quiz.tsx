@@ -3,12 +3,13 @@ import styles from './quiz.module.css';
 import { useFetch } from "../../api/useFetch";
 import QuizApi from "../../api/main/main";
 import { useParams } from "react-router-dom";
-import Task from "./components";
+import Task from "./components/task";
 
 
 const Quiz = () => {
 
-	const { id, name } = useParams<{id: string, name: string}>();
+	const { name } = useParams<{ name: string}>();
+	const id = sessionStorage.getItem(`${name}`);
 
 	const [questions, setQuestions] = useState<Array<Record<string, string | number>>>([]);
 
@@ -21,20 +22,18 @@ const Quiz = () => {
 			fetching();
 	}, []);
 
-	if(!isLoading) console.log(questions);
-
 	const renderQuestions = () => {
 		return questions.map((el) => {
-			return <Task key={el.id} data={el} />
+			return <Task key={el.id} data={el} quizName={name} />
 		})
 	}
 
 	return (
 		<div className={styles.wrapper}>
 			<header className={styles.header}>
-				<h2>
+				<h1>
 					{`Quiz: ${name}`}
-				</h2>
+				</h1>
 			</header>
 			<main>
 			{isLoading && <p>Loading...</p>}
@@ -45,6 +44,9 @@ const Quiz = () => {
 					!isLoading && !error && <p>No quizzes available</p>
 				)}
 			</main>
+			<button>
+				send
+			</button>
 		</div>
 	)
 }

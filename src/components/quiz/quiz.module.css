@@ -1,9 +1,10 @@
 .wrapper {
-	
+	margin-bottom: 10rem;
 }
 
 .header {
 	width: 100%;
-	border-bottom: 1px #202020 solid;
 	padding: 1rem;
+	margin-bottom: 10rem;
+	margin-top: 5rem;
 }

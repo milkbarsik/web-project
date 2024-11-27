@@ -5,13 +5,18 @@ import styles from './quiz-button.module.css'
 type props = {
 	path: string;
 	name: string;
+	id: string;
 }
 
-const QuizButton:FC<props> = ( {name, path} ) => {
+const saveParams = (id: string, name: string) => {
+	sessionStorage.setItem(`${name}`, id);
+}
+
+const QuizButton:FC<props> = ( {name, path, id} ) => {
 
 	return (
 		<Link to={path} className={styles.wrapper}>
-			<button>
+			<button onClick={() => saveParams(id, name)}>
 				{name}
 			</button>
 		</Link>

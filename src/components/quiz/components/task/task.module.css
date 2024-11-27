@@ -1,0 +1,16 @@
+.wrapper {
+	text-align: left;
+	margin-bottom: 7rem;
+}
+
+.wrapper h3 {
+	margin-bottom: 2rem;
+}
+
+.answers {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
