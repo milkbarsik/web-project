@@ -13,7 +13,7 @@ export default class QuizApi {
 		return res.data;
 	}
 
-	static async postAnswer (id: number, answers: Record<string | number, string>):Promise<{res: number}> {
+	static async postAnswer (id: number, answers: Record<string | number, string>):Promise<number> {
 		const data = {
 			quiz: id,
 			...answers,
@@ -24,7 +24,7 @@ export default class QuizApi {
 				Authorization: `Bearer ${token}`
 			},
 		});
-		return res.data;
+		return res.data.res;
 	}
 
 	static async getQuestions (id: number) {
@@ -33,6 +33,6 @@ export default class QuizApi {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-		return res.data
+		return res.data;
 	}
 }
