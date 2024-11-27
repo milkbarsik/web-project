@@ -5,6 +5,7 @@
 	top: 0;
 	width: 100%;
 	background-color: rgb(67, 57, 80);
+	z-index: 999;
 }
 
 .wrapper button {

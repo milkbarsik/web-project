@@ -14,6 +14,6 @@ export const routes:Troutes[] = [
 	},
 	{
 		Component: Quiz,
-		path: '/quiz/:id/:name',
+		path: '/quiz/:name',
 	}
 ]

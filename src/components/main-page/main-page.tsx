@@ -6,7 +6,7 @@ import QuizButton from "./components";
 
 const MainPage:FC = () => {
 
-	const [quizes, setQuizes] = useState<Array<{ id: number; name: string }>>([]);
+	const [quizes, setQuizes] = useState<Array<{ id: string; name: string }>>([]);
 
 	const {fetching, isLoading, error } = useFetch( async () => {
 		const data = await QuizeApi.getQuizes();
@@ -20,7 +20,7 @@ const MainPage:FC = () => {
 
 	const renderQuizButtons = () => {
 		return quizes.map((el) => {
-			return <QuizButton key={el.name} path={`/quiz/${el.id}/${el.name}`} name={el.name} />
+			return <QuizButton key={el.name} path={`/quiz/${el.name}`} name={el.name} id={el.id} />
 		})
 	}
 
