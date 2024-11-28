@@ -1,7 +1,9 @@
+import TeamCards from "../card";
+
 const Footer = () => {
 	return (
 		<div>
-
+			<TeamCards/>
 		</div>
 	)
 }

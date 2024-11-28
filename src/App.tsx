@@ -2,7 +2,7 @@ import './App.css'
 import AppRouter from './components/appRouter/appRouter'
 import Footer from './components/footer'
 import Header from './components/header'
-import TeamCards from './components/card/card'
+import Info from './components/info'
 
 function App() {
 
@@ -10,8 +10,8 @@ function App() {
     <div>
 			<Header />
 			<AppRouter />
+			<Info />
 			<Footer />
-			<TeamCards />
 		</div>
   )
 }
