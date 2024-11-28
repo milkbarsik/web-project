@@ -1,9 +1,10 @@
-import TeamCards from "../card";
+import TeamCards from '../card';
+import styles from './footer.module.css';
 
 const Footer = () => {
 	return (
-		<div>
-			<TeamCards/>
+		<div className={styles.wrapper}>
+			<TeamCards />
 		</div>
 	)
 }

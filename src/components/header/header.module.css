@@ -4,9 +4,10 @@
 	position: sticky;
 	top: 0;
 	width: 100%;
+	background-color: rgb(67, 57, 80);
+	z-index: 999;
 }
 
 .wrapper button {
-	margin: 2rem 2rem;
-	padding: 0.5rem 1rem;
+	margin: 1rem 2rem;
 }
