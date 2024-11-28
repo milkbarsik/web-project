@@ -1,16 +1,20 @@
 import './App.css'
+import styles from './App.module.css';
 import AppRouter from './components/appRouter/appRouter'
+import TeamCards from './components/card';
 import Footer from './components/footer'
 import Header from './components/header'
-import Info from './components/info'
 
 function App() {
 
   return (
-    <div>
+    <div className={styles.wrapper}>
 			<Header />
-			<AppRouter />
-			<Info />
+			<div className={styles.content}>
+				<AppRouter />
+				<TeamCards />
+			</div>
+
 			<Footer />
 		</div>
   )
