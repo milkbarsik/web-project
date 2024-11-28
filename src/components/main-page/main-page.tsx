@@ -28,6 +28,48 @@ const MainPage:FC = () => {
 		<div className={styles.wrapper}>
 
 			<div className={styles.content}>
+
+				<h3>Актуальность языка жестов</h3>
+				<p>
+					На данный момент, в мире насчитывается около 80 миллионов глухих людей.
+					Такие люди не могут общаться на тех же языках, что и мы. У них существует свой, особенный язык - язык жестов.
+					Он помогает им общаться как между собой, так и с другими людьми. 
+					К сожалению, язык жестов не является международным.
+					Это значит, что человек, владеющий русским жестовым языком, не поймёт человека из, к примеру, Германии.
+				</p>
+				
+				<h3>На этом сайте вы можете проверить свои знания языка жестов с помощью подготовленных нашей командой Квизов.</h3>
+				<p>
+					В формате квизов, вы можете проверить свои знания разных жестовых языков
+					(на данный момент это: русский, английский и бангладешский).
+					Такой формат упрощает обучение и делает его более запоминающимся.
+				</p>
+
+				<h3>Темы квизов</h3>
+				<p>
+					<b>Ниже</b> представлены темы квизов, в которых содержатся простые вопросы,
+					на которые могут ответить даже те, кто начал учить язык жестов совсем недавно.
+				</p>
+
+				
+
+			</div>
+
+			<div className={styles.quizButtonsWrapper}>
+				{isLoading && <p>Loading...</p>}
+				{error && <p style={{ color: "red" }}>Error: {error}</p>}
+				{!isLoading && !error && quizes.length > 0 ? (
+					renderQuizButtons()
+				) : (
+					!isLoading && !error && <p>No quizzes available</p>
+				)}
+			</div>
+		</div>
+	)
+}
+
+/* 
+
 				<h3>Advantages of Quizzes</h3>
 				<p>
 					Tests support students' in the acquisition of a general or specific knowledge of a 
@@ -53,19 +95,8 @@ const MainPage:FC = () => {
 				<p>
 					<b>Followings</b> are the quizzes topics, which contain simple questions for beginners:
 				</p>
-			</div>
+				
 
-			<div className={styles.quizButtonsWrapper}>
-				{isLoading && <p>Loading...</p>}
-				{error && <p style={{ color: "red" }}>Error: {error}</p>}
-				{!isLoading && !error && quizes.length > 0 ? (
-					renderQuizButtons()
-				) : (
-					!isLoading && !error && <p>No quizzes available</p>
-				)}
-			</div>
-		</div>
-	)
-}
+*/
 
 export default MainPage;
