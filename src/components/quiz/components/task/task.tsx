@@ -7,9 +7,10 @@ type props = {
     [key: string]: string | number;
   };
 	quizName: string | undefined;
+	wasSent: boolean;
 };
 
-const Task:FC<props> = ( {data, quizName} ) => {
+const Task:FC<props> = ( {data, quizName, wasSent} ) => {
 
 	const quizId = sessionStorage.getItem(`${quizName}`);
 	const [chooseAnswer, setAnswer] = useState<string | number>('');
@@ -34,7 +35,7 @@ const Task:FC<props> = ( {data, quizName} ) => {
 
 	const renderAnswers = ( data: {[key: string]: string | number}) => {
 		return Object.entries(data).splice(2).map((el) => {
-			return <Answer key={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} />
+			return <Answer key={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} wasSent={wasSent} />
 		})
 	}
 
