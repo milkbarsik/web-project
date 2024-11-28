@@ -15,13 +15,10 @@ export function useFetch (foo: () => Promise<any>):UseFetchReturn {
 		try {
 			setIsLoading(true);
 			await foo();
-
 		} catch (e) {
 			setError(e instanceof Error ? e.message: "unknown error")
-
 		} finally {
 			setIsLoading(false);
-
 		}
 	}
 

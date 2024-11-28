@@ -1,5 +1,29 @@
 .wrapper {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	padding: calc((1vh + 1vw) * 2);
+}
+
+.content {
+	text-align: left;
+	margin-bottom: calc((1vh + 1vw) * 2);
+}
+
+.content h3 {
+	margin-bottom: 2rem;
+}
+
+.content p {
+	margin-bottom: 5rem;
+}
+
+.quizButtonsWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc((1vh + 1vw));
+	justify-content: center;
+	align-items: center;
 }
