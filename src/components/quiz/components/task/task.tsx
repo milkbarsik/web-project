@@ -34,7 +34,7 @@ const Task:FC<props> = ( {data, quizName, wasSent} ) => {
 	}
 
 	const renderAnswers = ( data: {[key: string]: string | number}) => {
-		return Object.entries(data).splice(2).map((el) => {
+		return Object.entries(data).splice(2).filter((el) => el[1] !== null).map((el) => {
 			return <Answer key={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} wasSent={wasSent} />
 		})
 	}
