@@ -9,8 +9,10 @@ function App() {
   return (
     <div className={styles.wrapper}>
 			<Header />
-			<div className={styles.content}>
-				<AppRouter />
+			<div className={styles.parallaxWrapper}>
+				<div className={styles.content}>
+					<AppRouter />
+				</div>
 			</div>
 			<Footer />
 		</div>

@@ -5,16 +5,16 @@ import im3 from '../../assets/Romanihin.png';
 import im4 from '../../assets/Uvaisov.png';
 
 const Card = ({name, imgsrc} : {name: string, imgsrc: string}) => {
-    return (
-        <div className={styles.card}>
-            <img src={imgsrc}></img><br/>
-            {name}
-        </div>
-    )   
+	return (
+		<div className={styles.card}>
+			<img src={imgsrc}></img>
+			<p>{name}</p>
+		</div>
+	)
 }
 
 const TeamCards = () => {
-    const team = [
+    const team: Array<Record<string, string>> = [
         { 'name': 'Медведев Евгений', 'src' : im1},
         { 'name': 'Павлюченко Михаил', 'src' : im2},
         { 'name': 'Романихин Михаил', 'src' : im3},
@@ -22,14 +22,14 @@ const TeamCards = () => {
     ]
 
     return(
-        <>
+        <div className={styles.wrapper}>
             <h2>Наша команда:</h2><br />
             <div className={styles.cardsdisplay}>
                 {team.map(member => (
-                    <Card name={member.name} imgsrc={member.src}/> //imgsrc='./Medvedev.png'/>
+                    <Card key={member.name} name={member.name} imgsrc={member.src}/> //imgsrc='./Medvedev.png'/>
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

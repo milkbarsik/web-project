@@ -11,11 +11,8 @@
 }
 
 .result {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	z-index: 1;
+	margin-top: 5rem;
+	z-index: 3;
 	padding: 5rem;
 	min-height: 10%;
 	background-color: rgba(0, 0, 0, 0.850);
