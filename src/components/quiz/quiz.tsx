@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import TaskList from "./components/task-list";
 import SendAsnwers from "./components/sendAnswers";
 import timerManager from "./components/timer/timer";
+import StartQuiz from "./components/start-quiz";
 
 
 const Quiz = () => {
@@ -16,34 +17,18 @@ const Quiz = () => {
 	const {id, isStarted} = quizObject;
 	const [time, setTime] = useState<number>(quizObject.time);
 
+	const [isStart, setStart] = useState<boolean>(isStarted);
+	const [isLocked, setLocked] = useState<boolean>(quizObject.isLocked);
+	const [wasSent, setWasSent] = useState<boolean>(false);
+	const [needSend, setNeedSend] = useState<boolean>(false);
 
 	const [questions, setQuestions] = useState<Array<Record<string, string | number>>>([]);
 	const {fetching: fetchingQuestions, isLoading: isLoadingQuestions, error: errorQuestions} = useFetch(async () => {
 		const res = await QuizApi.getQuestions(Number(id));
 		setQuestions(res);
-	});
-
-	useEffect(() => {
-		fetchingQuestions();
-		if (time > 290 && isStart) {
-			timerManager.subscribe(changeTime, name !== undefined ? name : '');
-		} else {
-			setLocked(true);
-		}
-	}, []);
-
-
-	const [isStart, setStart] = useState<boolean>(isStarted);
-	const [isLocked, setLocked] = useState<boolean>(isStart && time <= 290);
-
-	const start = () => {
-		timerManager.subscribe(changeTime, name !== undefined ? name : '');
-		setStart(true);
-		setLocked(false);
-		quizObject.isStarted = true;
+		quizObject.questions = res;
 		sessionStorage.setItem(`${name}`, JSON.stringify(quizObject));
-	}
-
+	});
 
 	const changeTime = () => {
 		setTime((prev) => {
@@ -51,13 +36,28 @@ const Quiz = () => {
 			sessionStorage.setItem(`${name}`, JSON.stringify(
 				quizObject
 			))
-			if(prev <= 291) {
+			if(prev <= 1) {
 				timerManager.unsubscribe(name !== undefined ? name : '');
 				setLocked(true);
+				setNeedSend(true);
 			}
 			return prev - 1
 		})
 	}
+
+
+	useEffect(() => {
+		if( Object.keys(quizObject.questions).length === 0 ) {
+			fetchingQuestions();
+		} else {
+			console.log('have questions');
+			setQuestions(quizObject.questions);
+		}
+		if (isStart && !wasSent && time > 0) {
+			timerManager.subscribe(changeTime, name !== undefined ? name : '');
+		}
+		if(time === 0) setNeedSend(true);
+	}, []);
 
 
 	return (
@@ -69,19 +69,35 @@ const Quiz = () => {
 			</header>
 			
 			<main>
-				{!isStart && <button onClick={() => start()}>start quiz</button>}
-				
-				{isStart && <div className={styles.content}>
-					<TaskList
-						name={name}
-						isLocked={isLocked}
-						questions={questions}
-						isLoading={isLoadingQuestions}
-						error={errorQuestions}
-					/>
 
-					<SendAsnwers quizId={id} setLocked={setLocked} />
-				</div>}
+				{!isStart && <StartQuiz
+					name={name}
+					quizObject={quizObject}
+					setStart={setStart}
+					setLocked={setLocked}
+					changeTime={changeTime}
+				/>}
+
+				{
+					isStart &&
+					<div className={styles.content}>
+						<TaskList
+							name={name}
+							isLocked={isLocked}
+							questions={questions}
+							isLoading={isLoadingQuestions}
+							error={errorQuestions}
+						/>
+						<SendAsnwers
+							quizId={id}
+							name={name}
+							wasSent={wasSent}
+							needSend={needSend}
+							setLocked={setLocked}
+							setWasSent={setWasSent}
+						/>
+					</div>
+				}
 			</main>
 		</div>
 	)

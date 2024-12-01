@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuizApi from "../../../../api/main/main";
 import { useFetch } from "../../../../api/useFetch";
 import styles from './sendAnswers.module.css';
@@ -8,10 +8,15 @@ import timerManager from "../timer/timer";
 
 type props = {
 	quizId: string | null;
+	name: string | undefined;
+	wasSent: boolean;
+	needSend: boolean;
 	setLocked: (param: boolean) => void;
+	setWasSent: (param: boolean) => void;
 }
 
-const SendAsnwers:FC<props> = ( {quizId, setLocked} ) => {
+
+const SendAsnwers:FC<props> = ( {quizId, name, wasSent, needSend, setLocked, setWasSent} ) => {
 
 	const [result, setResult] = useState<number>(-1);
 	const {fetching: fetchingPost, isLoading: isLoadingPost, error: errorPost} = useFetch(async () => {
@@ -32,10 +37,23 @@ const SendAsnwers:FC<props> = ( {quizId, setLocked} ) => {
 
 
 		const sendResult = async () => {
+		timerManager.unsubscribe(name !== undefined ? name: '');
 		setLocked(true);
+		setWasSent(true);
 		await fetchingPost();
 		sessionStorage.removeItem(`quizAnswers${quizId}`);
 		setResultWindow(true);
+	}
+
+	useEffect(() => {
+		if (needSend) {
+			sendResult();
+		}
+	}, [needSend]);
+	
+
+	const restart = () => {
+		setResultWindow(false);
 	}
 
 	const renderResult = (count: number) => {
@@ -43,17 +61,16 @@ const SendAsnwers:FC<props> = ( {quizId, setLocked} ) => {
 				isResultWindow && <div className={styles.result}>
 				<h3>You are have scored {count} points</h3>
 				<button onClick={
-					() => {setResultWindow(false)}
-				}>ok</button>
+					() => {restart()}
+				}>restart</button>
 			</div>
 		)
 	}
-
 	return (
 		<div>
-			<button disabled={result !== -1} onClick={async () => sendResult()}>
+			{!wasSent && <button disabled={result !== -1} onClick={async () => sendResult()}>
 					send
-			</button>
+			</button>}
 			{isLoadingPost && <p>Loading...</p>}
 				{errorPost && <p style={{ color: "red" }}>Error: {errorPost}</p>}
 				{!isLoadingPost && !errorPost && result >= 0 ? (
