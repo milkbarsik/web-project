@@ -35,7 +35,7 @@ class TimerManager {
 			const quizObject = JSON.parse(data);
 			quizObject.time--;
 			sessionStorage.setItem(`${name}`, JSON.stringify(quizObject));
-			if( quizObject.time <= 290) this.unsubscribe(name);
+			if( quizObject.time <= 0) this.unsubscribe(name);
 		}
 	}
 

@@ -10,13 +10,15 @@ type props = {
 
 const saveParams = (id: string, name: string) => {
 	if(sessionStorage.getItem(`${name}`) == null) {
-		const object = {
+		const quizObject = {
 			id: id,
-			time: 300,
-			isStarted: false
+			questions: {},
+			time: 20,
+			isStarted: false,
+			isLocked: true,
 		}
 		sessionStorage.setItem(`${name}`, JSON.stringify(
-			object
+			quizObject
 		));
 	}
 }

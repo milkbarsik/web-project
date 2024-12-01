@@ -28,7 +28,7 @@
 
 .content {
   transform-origin: 50% 50%;
-  transform: translateZ(3px) scale(0.24);
+  transform: translateZ(3px) scale(0.2325);
   background: rgba(176, 255, 255);
   background: linear-gradient(170deg, rgba(176, 255, 255, 0.666) 0%, rgba(202, 142, 255, 0.666) 100%);
   width: 60%;
