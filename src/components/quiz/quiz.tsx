@@ -11,7 +11,7 @@ import timerManager from "./components/timer/timer";
 const Quiz = () => {
 
 	const { name } = useParams<{ name: string}>();
-	let data = sessionStorage.getItem(`${name}`);
+	const data = sessionStorage.getItem(`${name}`);
 	const quizObject = data !== null ? JSON.parse(data) : '';
 	const {id, isStarted} = quizObject;
 	const [time, setTime] = useState<number>(quizObject.time);
@@ -37,12 +37,9 @@ const Quiz = () => {
 	const [isLocked, setLocked] = useState<boolean>(isStart && time <= 290);
 
 	const start = () => {
+		timerManager.subscribe(changeTime, name !== undefined ? name : '');
 		setStart(true);
-		if (time > 290) {
-			timerManager.subscribe(changeTime, name !== undefined ? name : '');
-		} else {
-			setLocked(true);
-		}
+		setLocked(false);
 		quizObject.isStarted = true;
 		sessionStorage.setItem(`${name}`, JSON.stringify(quizObject));
 	}
