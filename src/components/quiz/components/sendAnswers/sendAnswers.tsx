@@ -3,6 +3,7 @@ import { useState } from "react";
 import QuizApi from "../../../../api/main/main";
 import { useFetch } from "../../../../api/useFetch";
 import styles from './sendAnswers.module.css';
+import timerManager from "../timer/timer";
 
 
 type props = {

@@ -13,7 +13,7 @@ type props = {
 const Task:FC<props> = ( {data, quizName, isLocked} ) => {
 
 	const rawQuizId =	sessionStorage.getItem(`${quizName}`);
-	const quizId = rawQuizId !== null ? JSON.parse(rawQuizId) : '';
+	const quizId = rawQuizId !== null ? JSON.parse(rawQuizId).id : '';
 	const [chooseAnswer, setAnswer] = useState<string | number>('');
 
 	const saveAnswer = (answer: string | number) => {

@@ -11,7 +11,6 @@ type props = {
 
 const TaskList:FC<props> = ( { name, isLocked, questions, isLoading, error} ) => {
 
-
 	const renderQuestions = () => {
 		return questions.map((el) => {
 			return <Task key={el.id} data={el} quizName={name} isLocked={isLocked} />
