@@ -9,7 +9,16 @@ type props = {
 }
 
 const saveParams = (id: string, name: string) => {
-	sessionStorage.setItem(`${name}`, id);
+	if(sessionStorage.getItem(`${name}`) == null) {
+		const object = {
+			id: id,
+			time: 300,
+			isStarted: false
+		}
+		sessionStorage.setItem(`${name}`, JSON.stringify(
+			object
+		));
+	}
 }
 
 const QuizButton:FC<props> = ( {name, path, id} ) => {
