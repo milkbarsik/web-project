@@ -5,17 +5,17 @@ type props = {
 	answer: string | number;
 	saveAnswer: (param: string | number) => void;
 	isActive: string | number;
-	wasSent: boolean;
+	isLocked: boolean;
 }
 
-const Answer:FC<props> = ( {answer, saveAnswer, isActive, wasSent} ) => {
+const Answer:FC<props> = ( {answer, saveAnswer, isActive, isLocked} ) => {
 
 	return (
 		<button
 			style={{backgroundColor: answer === isActive ? "rgb(125, 255, 183)" : "transparent"}}
 			className={styles.wrapper}
 			onClick={() => {saveAnswer(answer)}}
-			disabled={wasSent}
+			disabled={isLocked}
 		>
 			{answer}
 		</button>
