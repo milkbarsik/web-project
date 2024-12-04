@@ -7,10 +7,11 @@ type props = {
     [key: string]: string | number;
   };
 	quizName: string | undefined;
-	isLocked: boolean;
 };
 
-const Task:FC<props> = ( {data, quizName, isLocked} ) => {
+const Task:FC<props> = ( {data, quizName} ) => {
+
+
 
 	const rawQuizId =	sessionStorage.getItem(`${quizName}`);
 	const quizId = rawQuizId !== null ? JSON.parse(rawQuizId).id : '';
@@ -36,7 +37,7 @@ const Task:FC<props> = ( {data, quizName, isLocked} ) => {
 
 	const renderAnswers = ( data: {[key: string]: string | number}) => {
 		return Object.entries(data).splice(2).filter((el) => el[1] !== null).map((el) => {
-			return <Answer key={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} isLocked={isLocked} />
+			return <Answer key={el[0]} type={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} />
 		})
 	}
 

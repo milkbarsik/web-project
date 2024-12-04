@@ -1,19 +1,39 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Task from "./task";
+import { useQuizObject } from "../../../../context/quizContext";
+import { useFetch } from "../../../../api/useFetch";
+import QuizApi from "../../../../api/main/main";
 
 type props = {
 	name: string | undefined;
-	isLocked: boolean;
-	questions: Array<Record<string, string | number>>;
-	isLoading: boolean;
-	error: string | null;
 }
 
-const TaskList:FC<props> = ( { name, isLocked, questions, isLoading, error} ) => {
+const TaskList:FC<props> = ( { name } ) => {
+
+	const {
+		id,
+		questions,
+		setQuizField,
+		saveQuizObject
+	} = useQuizObject();
+
+	const {fetching, isLoading, error} = useFetch(async () => {
+		const res = await QuizApi.getQuestions(Number(id));
+		setQuizField({questions: res});
+		saveQuizObject(name);
+	});
+
+	useEffect(() => {
+		const currentQuizState = useQuizObject.getState();
+		if (!Array.isArray(currentQuizState.questions) || currentQuizState.questions.length === 0) {
+			fetching();
+		}
+	}, [])
 
 	const renderQuestions = () => {
 		return questions.map((el) => {
-			return <Task key={el.id} data={el} quizName={name} isLocked={isLocked} />
+			console.log(el);
+			return <Task key={el.id} data={el} quizName={name} />
 		})
 	}
 

@@ -1,62 +1,59 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from './quiz.module.css';
-import { useFetch } from "../../api/useFetch";
-import QuizApi from "../../api/main/main";
 import { useParams } from "react-router-dom";
 import TaskList from "./components/task-list";
 import SendAsnwers from "./components/sendAnswers";
 import timerManager from "./components/timer/timer";
 import StartQuiz from "./components/start-quiz";
-
+import { useQuizObject } from "../../context/quizContext";
 
 const Quiz = () => {
 
 	const { name } = useParams<{ name: string}>();
-	const data = sessionStorage.getItem(`${name}`);
-	const quizObject = data !== null ? JSON.parse(data) : '';
-	const {id, isStarted} = quizObject;
-	const [time, setTime] = useState<number>(quizObject.time);
 
-	const [isStart, setStart] = useState<boolean>(isStarted);
-	const [isLocked, setLocked] = useState<boolean>(quizObject.isLocked);
-	const [wasSent, setWasSent] = useState<boolean>(false);
-	const [needSend, setNeedSend] = useState<boolean>(false);
+	const {
+    time,
+    isStarted,
+		setTime,
+    setQuizField,
+    loadQuizObject,
+		saveQuizObject,
+  } = useQuizObject();
 
-	const [questions, setQuestions] = useState<Array<Record<string, string | number>>>([]);
-	const {fetching: fetchingQuestions, isLoading: isLoadingQuestions, error: errorQuestions} = useFetch(async () => {
-		const res = await QuizApi.getQuestions(Number(id));
-		setQuestions(res);
-		quizObject.questions = res;
-		sessionStorage.setItem(`${name}`, JSON.stringify(quizObject));
-	});
 
-	const changeTime = () => {
-		setTime((prev) => {
-			quizObject.time--;
-			sessionStorage.setItem(`${name}`, JSON.stringify(
-				quizObject
-			))
-			if(prev <= 1) {
+
+	const changeTime = (time: number) => {
+		let currentTime = time;
+		return () => {
+			setTime();
+			currentTime--;
+			if(currentTime <= 0) {
 				timerManager.unsubscribe(name !== undefined ? name : '');
-				setLocked(true);
-				setNeedSend(true);
+				setQuizField({isLocked: true, needSend: true});
 			}
-			return prev - 1
-		})
+			saveQuizObject(name);
+		}
 	}
 
 
 	useEffect(() => {
-		if( Object.keys(quizObject.questions).length === 0 ) {
-			fetchingQuestions();
-		} else {
-			console.log('have questions');
-			setQuestions(quizObject.questions);
+		if (name) {
+			loadQuizObject(name);
+	
+			const currentQuizState = useQuizObject.getState();
+			if (
+				currentQuizState.isStarted &&
+				!currentQuizState.wasSent &&
+				currentQuizState.time > 0
+			) {
+				timerManager.subscribe(changeTime(currentQuizState.time), name);
+				console.log("subscribe");
+			}
+	
+			if (currentQuizState.time === 0 && !currentQuizState.wasSent) {
+				setQuizField({needSend: true});
+			}
 		}
-		if (isStart && !wasSent && time > 0) {
-			timerManager.subscribe(changeTime, name !== undefined ? name : '');
-		}
-		if(time === 0) setNeedSend(true);
 	}, []);
 
 
@@ -69,32 +66,19 @@ const Quiz = () => {
 			</header>
 			
 			<main>
-
-				{!isStart && <StartQuiz
+				{!isStarted && <StartQuiz
 					name={name}
-					quizObject={quizObject}
-					setStart={setStart}
-					setLocked={setLocked}
-					changeTime={changeTime}
+					changeTime={changeTime(time)}
 				/>}
 
 				{
-					isStart &&
+					isStarted &&
 					<div className={styles.content}>
 						<TaskList
 							name={name}
-							isLocked={isLocked}
-							questions={questions}
-							isLoading={isLoadingQuestions}
-							error={errorQuestions}
 						/>
 						<SendAsnwers
-							quizId={id}
 							name={name}
-							wasSent={wasSent}
-							needSend={needSend}
-							setLocked={setLocked}
-							setWasSent={setWasSent}
 						/>
 					</div>
 				}

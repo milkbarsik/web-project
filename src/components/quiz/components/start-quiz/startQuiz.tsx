@@ -1,22 +1,23 @@
 import { FC } from "react";
 import timerManager from "../timer/timer";
+import { useQuizObject } from "../../../../context/quizContext";
 
 type props = {
 	name: string | undefined;
-	quizObject: any;
-	setStart: (param: boolean) => void;
-	setLocked: (param: boolean) => void;
 	changeTime: () => void;
 }
 
-const StartQuiz:FC<props> = ( {name, quizObject, setStart, setLocked, changeTime} ) => {
+const StartQuiz:FC<props> = ( {name, changeTime} ) => {
+
+	const {
+		setQuizField,
+		saveQuizObject,
+	} = useQuizObject();
 
 	const start = () => {
 		timerManager.subscribe(changeTime, name !== undefined ? name : '');
-		setStart(true);
-		setLocked(false);
-		quizObject.isStarted = true;
-		sessionStorage.setItem(`${name}`, JSON.stringify(quizObject));
+		setQuizField({isStarted: true, isLocked: false});
+		saveQuizObject(name);
 	}
 
 	return (

@@ -1,85 +1,81 @@
 import { FC } from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import QuizApi from "../../../../api/main/main";
 import { useFetch } from "../../../../api/useFetch";
-import styles from './sendAnswers.module.css';
 import timerManager from "../timer/timer";
-
+import styles from './sendAnswers.module.css';
+import { useQuizObject } from "../../../../context/quizContext";
+import Restart from "./restart";
 
 type props = {
-	quizId: string | null;
 	name: string | undefined;
-	wasSent: boolean;
-	needSend: boolean;
-	setLocked: (param: boolean) => void;
-	setWasSent: (param: boolean) => void;
 }
 
 
-const SendAsnwers:FC<props> = ( {quizId, name, wasSent, needSend, setLocked, setWasSent} ) => {
+const SendAsnwers:FC<props> = ( {name } ) => {
 
-	const [result, setResult] = useState<number>(-1);
+	const {
+		id,
+		wasSent,
+		result,
+		needSend,
+		setQuizField,
+		saveQuizObject,
+	} = useQuizObject();
+
 	const {fetching: fetchingPost, isLoading: isLoadingPost, error: errorPost} = useFetch(async () => {
-		const data = (sessionStorage.getItem(`quizAnswers${quizId}`));
+		const data = (sessionStorage.getItem(`quizAnswers${id}`));
 		if(data !== null) {
 			const answers = JSON.parse(data);
-			const result = await QuizApi.postAnswer(Number(quizId), answers);
-			setResult(result);
+			const res = await QuizApi.postAnswer(Number(id), answers);
+			setQuizField({result: res});
+			saveQuizObject(name);
 		} else {
-			const result = await QuizApi.postAnswer(Number(quizId), {});
-			setResult(result);
+			const res = await QuizApi.postAnswer(Number(id), {});
+			setQuizField({result: res});
+			saveQuizObject(name);
 		}
 	})
 
 
-
-	const [isResultWindow, setResultWindow] = useState<boolean>(false);
-
-
 		const sendResult = async () => {
-		timerManager.unsubscribe(name !== undefined ? name: '');
-		setLocked(true);
-		setWasSent(true);
-		await fetchingPost();
-		sessionStorage.removeItem(`quizAnswers${quizId}`);
-		setResultWindow(true);
+			timerManager.unsubscribe(name !== undefined ? name: '');
+			setQuizField({isLocked: true, wasSent: true, needSend: false});
+			await fetchingPost();
+			saveQuizObject(name);
 	}
 
 	useEffect(() => {
 		if (needSend) {
+			console.log('send');
 			sendResult();
 		}
 	}, [needSend]);
-	
 
-	const restart = () => {
-		setResultWindow(false);
-	}
 
-	const renderResult = (count: number) => {
+
+	const renderResult = (result: number | string) => {
 		return (
-				isResultWindow && <div className={styles.result}>
-				<h3>You are have scored {count} points</h3>
-				<button onClick={
-					() => {restart()}
-				}>restart</button>
+			result !== '...' &&
+			<div className={styles.result}>
+				<h3>You are have scored {result} points</h3>
 			</div>
 		)
 	}
 	return (
 		<div>
-			{!wasSent && <button disabled={result !== -1} onClick={async () => sendResult()}>
+			{!wasSent && <button disabled={result !== "..."} onClick={async () => sendResult()}>
 					send
 			</button>}
 			{isLoadingPost && <p>Loading...</p>}
-				{errorPost && <p style={{ color: "red" }}>Error: {errorPost}</p>}
-				{!isLoadingPost && !errorPost && result >= 0 ? (
+			{errorPost && <p style={{ color: "red" }}>Error: {errorPost}</p>}
 
-					renderResult(result)
-				
-				) : (
-					!isLoadingPost && !errorPost && <h4></h4>
-				)}
+			{renderResult(result)}
+
+			{wasSent && 
+			<Restart
+				name={name}
+			/>}
 		</div>
 	)
 }

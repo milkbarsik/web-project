@@ -13,9 +13,12 @@ const saveParams = (id: string, name: string) => {
 		const quizObject = {
 			id: id,
 			questions: {},
-			time: 20,
+			startTime: 180,
+			time: 180,
+			wasSent: false,
 			isStarted: false,
 			isLocked: true,
+			wasRestarted: false,
 		}
 		sessionStorage.setItem(`${name}`, JSON.stringify(
 			quizObject
