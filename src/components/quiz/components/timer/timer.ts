@@ -15,9 +15,9 @@ class TimerManager {
 	}
 
 	private intervalId: number | null = null;
-	private subscribers: any = {};
+	private subscribers: Record<string, () => void> = {};
 
-	subscribe (callback: any, name: string) {
+	subscribe (callback: () => void, name: string) {
 		this.subscribers[name] = callback;
 		this.selfSave();
 		this.startTimer();
