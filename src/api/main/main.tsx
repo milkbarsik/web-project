@@ -18,6 +18,7 @@ export default class QuizApi {
 			quiz: id,
 			...answers,
 		}
+		console.log(data);
 		const res = await axios.post('http://91.197.96.178/main/quiz', data, {
 			headers: {
 				'Content-Type': 'application/json',

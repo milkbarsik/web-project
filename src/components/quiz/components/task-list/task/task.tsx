@@ -53,7 +53,7 @@ const Task:FC<props> = ( {data, quizName} ) => {
 
 	return (
 		<div className={styles.wrapper}>
-			<h3>{data.content}</h3>
+			<h1>{data.content}</h1>
 			<div className={styles.answers}>
 				{renderAnswers(data)}
 			</div>

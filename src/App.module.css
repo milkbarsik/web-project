@@ -3,14 +3,15 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
+	height: 100vh;
 	overflow-x: hidden;
-  perspective: 1px;
-  perspective-origin: 50% 50%;
+	overflow-y: scroll;
+	
+  /* perspective: 1px;
+  perspective-origin: 50% 50%; */
 }
 
-.parallaxWrapper {
+/* .parallaxWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,16 +25,16 @@
   transform: translateZ(-3px) scale(4.3);
   transform-style: preserve-3d;
 	z-index: -1;
-}
+} */
 
 .content {
-  transform-origin: 50% 50%;
-  transform: translateZ(3px) scale(0.2325);
+  /* transform-origin: 50% 31.416%;
+  transform: translateZ(3px) scale(0.2);
   background: rgba(176, 255, 255);
-  background: linear-gradient(170deg, rgba(176, 255, 255, 0.666) 0%, rgba(202, 142, 255, 0.666) 100%);
+  background: linear-gradient(170deg, rgba(176, 255, 255, 0.666) 0%, rgba(202, 142, 255, 0.666) 100%); */
   width: 60%;
-  border-right: 1px #202020 solid;
-  border-left: 1px #202020 solid;
-  border-radius: 5px;
 	z-index: 1;
+	background: linear-gradient(180deg, #A6FEFF 4.5%, #FFF79D 46.5%, #D7CFFF 93%);
+	border-radius: 16px;
 }
+
