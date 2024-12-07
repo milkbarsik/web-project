@@ -6,8 +6,10 @@
 
   color-scheme: light dark;
   color: rgb(17, 17, 17);
-  background: rgb(176,255,255);
-	background: linear-gradient(170deg, rgba(176,255,255,1) 0%, rgba(202,142,255,1) 100%);
+	/* background: linear-gradient(180deg, #A6FEFF 4.5%, #FFF79D 46.5%, #D7CFFF 93%); */
+	background-color: white;
+	background: rgba(176, 255, 255);
+  background: linear-gradient(170deg, rgba(176, 255, 255, 0.666) 0%, rgba(202, 142, 255, 0.666) 100%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -3,6 +3,7 @@ import Task from "./task";
 import { useQuizObject } from "../../../../context/quizContext";
 import { useFetch } from "../../../../api/useFetch";
 import QuizApi from "../../../../api/main/main";
+import styles from './task-list.module.css';
 
 type props = {
 	name: string | undefined;
@@ -32,13 +33,12 @@ const TaskList:FC<props> = ( { name } ) => {
 
 	const renderQuestions = () => {
 		return questions.map((el) => {
-			console.log(el);
 			return <Task key={el.id} data={el} quizName={name} />
 		})
 	}
 
 	return (
-		<div>
+		<div className={styles.wrapper}>
 			{isLoading && <p>Loading...</p>}
 				{error && <p style={{ color: "red" }}>Error: {error}</p>}
 				{!isLoading && !error && questions.length > 0 ? (

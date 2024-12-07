@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from './answer.module.css';
 import { useQuizObject } from "../../../../../../context/quizContext";
 
@@ -8,8 +8,11 @@ type props = {
 	saveAnswer: (param: string | number) => void;
 	isActive: string | number;
 }
-
 const Answer:FC<props> = ( {type, answer, saveAnswer, isActive} ) => {
+
+	useEffect(() => {
+		console.log(answer)
+	}, [])
 
 	const {
 		isLocked,
@@ -37,7 +40,15 @@ const Answer:FC<props> = ( {type, answer, saveAnswer, isActive} ) => {
 			onClick={() => {saveAnswer(answer)}}
 			disabled={isLocked}
 		>
-			{answer}
+			<video
+				className={styles.video}
+				muted
+				autoPlay
+				controls={false}
+				loop
+				preload="auto"
+				src={`http://91.197.96.178/${answer}`}>
+			</video>
 		</button>
 	)
 }
