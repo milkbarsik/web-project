@@ -1,4 +1,4 @@
-import TeamCards from './card';
+import TeamCards from './cards';
 import styles from './footer.module.css';
 
 const Footer = () => {

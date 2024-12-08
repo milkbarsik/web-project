@@ -3,14 +3,9 @@
   line-height: 1.5;
   font-weight: 500;
 	font-size: 62.5%;
-
   color-scheme: light dark;
-  color: rgb(17, 17, 17);
-	/* background: linear-gradient(180deg, #A6FEFF 4.5%, #FFF79D 46.5%, #D7CFFF 93%); */
-	background-color: white;
-	background: rgba(176, 255, 255);
-  background: linear-gradient(170deg, rgba(176, 255, 255, 0.666) 0%, rgba(202, 142, 255, 0.666) 100%);
-
+  color: black;
+  background: linear-gradient(90deg,#ff6969  ,#964aff );
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -32,19 +27,21 @@ body {
 }
 
 button {
+	border: 1px #202020 solid;
   border-radius: 8px;
-  border: 1px solid transparent;
+	color: black;
   padding: 0.6em 1em;
   font-size: 1em;
-  font-weight: 600;
+  font-weight: 700;
   font-family: inherit;
-  background-color: #202020;
+  background-color: transparent;
   cursor: pointer;
 	transition: 0.2s;
 	height: min-content;
 }
 button:hover {
-  border-color: white;
-	color: white;
 	transform: translateY(-2px);
+	box-shadow: 0 0 10px 1px rgb(133, 247, 255);
+	color: rgb(190, 251, 255);
+	background-color: rgba(0, 0, 0, 0.1);
 }
