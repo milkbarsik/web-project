@@ -9,9 +9,12 @@
 }
 
 .answers {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 1rem;
-	flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: calc((1vh + 1vw));
+}
+
+.answers > * {
+  transition: all 0.3s ease;
 }

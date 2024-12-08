@@ -59,10 +59,11 @@ const Quiz = () => {
 
 	return (
 		<div className={styles.wrapper}>
+			<span className={styles.time}>
+				{time}s
+			</span>
 			<header className={styles.header}>
-				<h1>
-					{`Quiz: ${name} ${time}s`}
-				</h1>
+					{`Quiz: ${name}`}
 			</header>
 			
 			<main>
