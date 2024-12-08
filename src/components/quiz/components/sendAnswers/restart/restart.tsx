@@ -10,19 +10,21 @@ const Restart:FC<props> = ({ name }) => {
 
 	const {
 		id,
+		timeForQuiz,
 		wasRestarted,
 		setQuizField,
 		saveQuizObject,
-		startTime,
 	} = useQuizObject();
 
 	const restart = () => {
 		setQuizField({
 			result: "...",
-			time: startTime,
+			timeNow: timeForQuiz,
+			timeQuizEnd: -1,
 			wasSent: false,
 			isStarted: false,
 			isLocked: true,
+			needSend: false,
 			wasRestarted: true,
 		})
 		saveQuizObject(name);

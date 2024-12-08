@@ -1,5 +1,4 @@
 import { FC } from "react";
-import timerManager from "../timer/timer";
 import { useQuizObject } from "../../../../context/quizContext";
 
 type props = {
@@ -12,10 +11,17 @@ const StartQuiz:FC<props> = ( {name, changeTime} ) => {
 	const {
 		setQuizField,
 		saveQuizObject,
+		loadQuizObject
 	} = useQuizObject();
 
 	const start = () => {
-		timerManager.subscribe(changeTime, name !== undefined ? name : '');
+		loadQuizObject(name);
+		const currentQuizState = useQuizObject.getState();
+		if(currentQuizState.timeQuizEnd === -1) {
+			setQuizField({timeQuizEnd: Math.floor(Date.now() / 1000) + currentQuizState.timeForQuiz});
+			saveQuizObject(name);
+		}
+		changeTime();
 		setQuizField({isStarted: true, isLocked: false});
 		saveQuizObject(name);
 	}
