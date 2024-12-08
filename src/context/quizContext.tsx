@@ -4,15 +4,16 @@ import { devtools } from "zustand/middleware";
 type QuizState = {
   id: number | null;
   questions: Array<Record<string, string | number>>;
-  startTime: number;
-  time: number;
+  timeForQuiz: number;
+	timeQuizEnd: number
+  timeNow: number;
   wasSent: boolean;
   isStarted: boolean;
   isLocked: boolean;
 	needSend: boolean;
   wasRestarted: boolean;
 	result: string | number;
-  setTime: (value?: number) => void;
+  setTimeNow: (value?: number) => void;
   setQuizField: (field: Partial<QuizState>) => void;
   loadQuizObject: (name: string | undefined) => void;
   saveQuizObject: (name: string | undefined) => void;
@@ -24,8 +25,9 @@ export const useQuizObject = create<QuizState>()(
     (set, get) => ({
       id: null,
       questions: [],
-      startTime: 180,
-      time: 180,
+      timeForQuiz: 180,
+			timeQuizEnd: -1,
+  		timeNow: 180,
       wasSent: false,
       isStarted: false,
       isLocked: true,
@@ -33,8 +35,8 @@ export const useQuizObject = create<QuizState>()(
       wasRestarted: false,
 			result: "...",
 
-      setTime: (value?: number) =>
-        set((state) => ({ time: value ? value : state.time - 1 }), false, "setTime"),
+      setTimeNow: (value?: number) =>
+        set((state) => ({ timeNow: value ? value : state.timeNow - 1 }), false, "setTime"),
 
       setQuizField: (field) =>
         set((state) => ({ ...state, ...field }), false, "setQuizField"),
