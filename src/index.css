@@ -34,7 +34,7 @@ button {
   font-size: 1em;
   font-weight: 700;
   font-family: inherit;
-  background-color: transparent;
+  background-color: #ff6969;
   cursor: pointer;
 	transition: 0.2s;
 	height: min-content;
@@ -43,5 +43,5 @@ button:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 0 10px 1px rgb(133, 247, 255);
 	color: rgb(190, 251, 255);
-	background-color: rgba(0, 0, 0, 0.1);
+	/* background-color: rgba(0, 0, 0, 0.1); */
 }
