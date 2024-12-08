@@ -2,8 +2,14 @@
 	background-color: transparent;
 	color: black !important;
 	font-weight: 500;
-	padding: 0.5rem;
+	padding: 1rem;
 	border: 1px black solid !important;
-	width: 60%;
-	text-align: left;
+	align-content: center;
+	width: 65%;
+}
+
+.video {
+	width: 100%;
+	border: 0;
+	border-radius: 5px;
 }
