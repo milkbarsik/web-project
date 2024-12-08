@@ -46,6 +46,7 @@ class TimerManager {
   }
 
 	startTimer () {
+		console.log('startTimer');
 		if(this.intervalId !== null || Object.keys(this.subscribers).length === 0) return;
 
 		this.intervalId = window.setInterval(() => {

@@ -1,8 +1,10 @@
-import { FC, useEffect, useState} from "react";
+import { FC, useEffect, useRef, useState} from "react";
 import styles from './main-page.module.css';
 import { useFetch } from "../../api/useFetch";
 import QuizeApi from "../../api/main/main";
 import QuizButton from "./components";
+import hello from '../../assets/hello.gif';
+import { useLocation } from "react-router-dom";
 
 const MainPage:FC = () => {
 
@@ -24,14 +26,30 @@ const MainPage:FC = () => {
 		})
 	}
 
+	const quizzesButtons = useRef<HTMLDivElement>(null);
+	const location = useLocation();
+	useEffect(() => {
+		if (location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+		const t = setTimeout(() => {
+			if (location.hash === "#quizzes" && quizzesButtons.current) {
+				quizzesButtons.current.scrollIntoView({ behavior: "smooth" });
+			}
+		}, 0)
+		return () => clearTimeout(t);
+	}, [location]);
+
 	return (
 		<div className={styles.wrapper}>
 			<nav className={styles.nav}>
 				<p className={styles.preview}>
-					А сюда мы напишем текст, который будет олицетворять тематику веб приложения
+					Язык жестов — легко и увлекательно! Пройди квизы и узнай больше.
 				</p>
 				<div className={styles.quizHeadButtons}>
-					{renderQuizButtons()}
+					<img style={{
+						width: "calc((1vh + 1vw) * 4)"
+					}} src={hello} alt="" />
 				</div>
 			</nav>
 			<header className={styles.header}>
@@ -65,7 +83,7 @@ const MainPage:FC = () => {
 				</section>
 			</div>
 
-			<div className={styles.quizButtonsWrapper}>
+			<div ref={quizzesButtons} className={styles.quizButtonsWrapper}>
 				{isLoading && <p>Loading...</p>}
 				{error && <p style={{ color: "red" }}>Error: {error}</p>}
 				{!isLoading && !error && quizes.length > 0 ? (
