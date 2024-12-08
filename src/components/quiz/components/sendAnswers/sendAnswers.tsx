@@ -2,17 +2,17 @@ import { FC } from "react";
 import { useEffect } from "react";
 import QuizApi from "../../../../api/main/main";
 import { useFetch } from "../../../../api/useFetch";
-import timerManager from "../timer/timer";
 import styles from './sendAnswers.module.css';
 import { useQuizObject } from "../../../../context/quizContext";
 import Restart from "./restart";
 
 type props = {
 	name: string | undefined;
+	timer: any
 }
 
 
-const SendAsnwers:FC<props> = ( {name } ) => {
+const SendAsnwers:FC<props> = ( { name, timer } ) => {
 
 	const {
 		id,
@@ -39,7 +39,7 @@ const SendAsnwers:FC<props> = ( {name } ) => {
 
 
 		const sendResult = async () => {
-			timerManager.unsubscribe(name !== undefined ? name: '');
+			clearInterval(timer);
 			setQuizField({isLocked: true, wasSent: true, needSend: false});
 			await fetchingPost();
 			saveQuizObject(name);

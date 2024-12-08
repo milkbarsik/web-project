@@ -6,8 +6,6 @@
 	width: 100%;
 	background-color: transparent;
 	z-index: 999;
-}
-
-.wrapper button {
-	margin: 1rem 2rem;
+	gap: calc((1vh + 1vw));
+	padding: calc((1vh + 1vw) / 2) calc((1vh + 1vw));
 }

@@ -5,8 +5,10 @@ import AppRouter from './components/appRouter/appRouter'
 import Footer from './components/footer'
 import Header from './components/header'
 import { useEffect, useRef } from 'react';
+import { useQuizObject } from './context/quizContext';
 
 function App() {
+	const {wasRestarted} = useQuizObject();
 	const location = useLocation();
 
 	const wrapper = useRef<HTMLDivElement>(null);
@@ -15,7 +17,7 @@ function App() {
 		if (wrapper.current) {
       wrapper.current.scrollTo(0, 0);
     }
-	}, [location])
+	}, [location, wasRestarted]);
 
   return (
 		<div className={styles.wrapper} ref={wrapper}>
