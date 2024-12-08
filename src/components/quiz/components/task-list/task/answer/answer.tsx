@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styles from './answer.module.css';
 import { useQuizObject } from "../../../../../../context/quizContext";
 
@@ -10,10 +10,6 @@ type props = {
 }
 const Answer:FC<props> = ( {type, answer, saveAnswer, isActive} ) => {
 
-	useEffect(() => {
-		console.log(answer)
-	}, [])
-
 	const {
 		isLocked,
 		wasRestarted,
@@ -22,19 +18,19 @@ const Answer:FC<props> = ( {type, answer, saveAnswer, isActive} ) => {
 
 	return (
 		<button
-			style={{ backgroundColor: wasRestarted && result !== "..."
+			style={{ boxShadow: wasRestarted && result !== "..."
 				? isActive === answer
 					? type === "right_answer"
-						? "rgb(88, 255, 163)" // цвет для правильного ответа, если выбран
-						: "rgb(255, 87, 87)" // цвет для неправильного ответа, если выбран
+						? "0 0 20px 10px rgb(88, 255, 163)" // цвет для правильного ответа, если выбран
+						: "0 0 20px 10px rgb(255, 87, 87)" // цвет для неправильного ответа, если выбран
 					: type === "right_answer"
-					? "rgb(88, 255, 163)" // цвет для правильного ответа, если НЕ выбран
-					: "transparent" // цвет для остальных
+					? "0 0 20px 10px rgb(88, 255, 163)" // цвет для правильного ответа, если НЕ выбран
+					: "none" // цвет для остальных
 				: isActive === answer
 				? type === "right_answer"
-					? "rgb(88, 255, 163)" // цвет для правильного ответа, если выбран
-					: "rgb(88, 255, 163)" // цвет для неправильного ответа, если выбран
-				: "transparent", // цвет для остальных
+					? "0 0 20px 10px rgb(133, 247, 255)" // цвет для правильного ответа, если выбран
+					: "0 0 20px 10px rgb(133, 247, 255)" // цвет для неправильного ответа, если выбран
+				: "none", // цвет для остальных
 			}}
 			className={styles.wrapper}
 			onClick={() => {saveAnswer(answer)}}
