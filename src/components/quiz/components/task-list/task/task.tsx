@@ -1,18 +1,20 @@
 import { FC, useEffect, useState  } from "react";
 import styles from './task.module.css';
-import Answer from "../answer";
+import Answer from "./answer";
 
 type props = {
   data: {
     [key: string]: string | number;
   };
 	quizName: string | undefined;
-	wasSent: boolean;
 };
 
-const Task:FC<props> = ( {data, quizName, wasSent} ) => {
+const Task:FC<props> = ( {data, quizName} ) => {
 
-	const quizId = sessionStorage.getItem(`${quizName}`);
+
+
+	const rawQuizId =	sessionStorage.getItem(`${quizName}`);
+	const quizId = rawQuizId !== null ? JSON.parse(rawQuizId).id : '';
 	const [chooseAnswer, setAnswer] = useState<string | number>('');
 
 	const saveAnswer = (answer: string | number) => {
@@ -35,7 +37,7 @@ const Task:FC<props> = ( {data, quizName, wasSent} ) => {
 
 	const renderAnswers = ( data: {[key: string]: string | number}) => {
 		return Object.entries(data).splice(2).filter((el) => el[1] !== null).map((el) => {
-			return <Answer key={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} wasSent={wasSent} />
+			return <Answer key={el[0]} type={el[0]} answer={el[1]} saveAnswer={saveAnswer} isActive={chooseAnswer} />
 		})
 	}
 
@@ -51,7 +53,7 @@ const Task:FC<props> = ( {data, quizName, wasSent} ) => {
 
 	return (
 		<div className={styles.wrapper}>
-			<h3>{data.content}</h3>
+			<h1>{data.content}</h1>
 			<div className={styles.answers}>
 				{renderAnswers(data)}
 			</div>
