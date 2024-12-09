@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-type UseFetchReturn = {
+export type UseFetchReturn = {
   isLoading: boolean;
   error: string | null;
   fetching: () => Promise<void>;

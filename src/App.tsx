@@ -6,6 +6,8 @@ import Footer from './components/footer'
 import Header from './components/header'
 import { useEffect, useRef } from 'react';
 import { useQuizObject } from './context/quizContext';
+import { useAuth } from './api/store/useAuth';
+import { ConfigProvider } from 'antd';
 
 function App() {
 	const {wasRestarted} = useQuizObject();
@@ -19,14 +21,51 @@ function App() {
     }
 	}, [location, wasRestarted]);
 
+
+	const {
+		getUser,
+		setAuth
+	} = useAuth();
+
+	useEffect(() => {
+
+		const fetch = async () => {
+			if(localStorage.getItem('token')) {
+					const res = await getUser();
+					console.log(res);
+					if(res?.data.id) {
+						setAuth(true);
+					}
+			}
+		}
+
+		fetch();
+	}, [])
+
   return (
-		<div className={styles.wrapper} ref={wrapper}>
-			<Header />
-			<div className={styles.content}>
-				<AppRouter />
+		<ConfigProvider
+			theme={{
+				token: {
+					colorBorder: 'black',
+					colorError: 'black',
+				},
+				components: {
+					Input: {
+						colorBgContainer: '#ffb0ff',
+						colorText: 'black',
+					},
+					
+				}
+			}}
+		>
+			<div className={styles.wrapper} ref={wrapper}>
+				<Header />
+				<div className={styles.content}>
+					<AppRouter />
+				</div>
+				<Footer />
 			</div>
-			<Footer />
-		</div>
+		</ConfigProvider>
   )
 }
 
