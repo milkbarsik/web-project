@@ -5,9 +5,13 @@ import QuizeApi from "../../api/main/main";
 import QuizButton from "./components";
 import hello from '../../assets/hello.gif';
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../../api/store/useAuth";
 
 const MainPage:FC = () => {
 
+	const {
+		isAuth
+	} = useAuth();
 	const [quizes, setQuizes] = useState<Array<{ id: string; name: string }>>([]);
 
 	const {fetching, isLoading, error } = useFetch( async () => {
@@ -85,7 +89,8 @@ const MainPage:FC = () => {
 
 			<div ref={quizzesButtons} className={styles.quizButtonsWrapper}>
 				{isLoading && <p>Loading...</p>}
-				{error && <p style={{ color: "red" }}>Error: {error}</p>}
+				{error && !isAuth && <h2>Авторизуйтесь</h2>}
+				{error && isAuth && <p style={{ color: "red" }}>Error: {error}</p>}
 				{!isLoading && !error && quizes.length > 0 ? (
 					renderQuizButtons()
 				) : (
