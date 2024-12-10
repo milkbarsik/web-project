@@ -28,12 +28,26 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 		if(data !== null) {
 			const answers = JSON.parse(data);
 			const res = await QuizApi.postAnswer(Number(id), answers);
-			setQuizField({result: res});
-			saveQuizObject(name);
+			if(res.status === 460) {
+				setQuizField({result: res.status});
+				saveQuizObject(name);
+				return
+			}
+			if(res.status === 200) {
+				setQuizField({result: res.data.res});
+				saveQuizObject(name);
+			}
 		} else {
 			const res = await QuizApi.postAnswer(Number(id), {});
-			setQuizField({result: res});
-			saveQuizObject(name);
+			if(res.status === 460) {
+				setQuizField({result: res.status});
+				saveQuizObject(name);
+				return
+			}
+			if(res.status === 200) {
+				setQuizField({result: res.data.res});
+				saveQuizObject(name);
+			}
 		}
 	})
 
@@ -55,6 +69,15 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 
 
 	const renderResult = (result: number | string) => {
+		if(result === 460) {
+			return (
+				<div>
+					<div className={styles.result}>
+				<h3>Вы использовали максимальное число попыток (2)</h3>
+			</div>
+				</div>
+			)
+		}
 		return (
 			result !== '...' &&
 			<div className={styles.result}>
@@ -68,11 +91,12 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 					send
 			</button>}
 			{isLoadingPost && <p>Loading...</p>}
-			{errorPost && <p style={{ color: "red" }}>Error: {errorPost}</p>}
+			{errorPost && result !== 460 && <p style={{ color: "red" }}>Error: {errorPost}</p>}
+			
 
 			{renderResult(result)}
 
-			{wasSent && 
+			{wasSent && result !== 460 &&
 			<Restart
 				name={name}
 			/>}

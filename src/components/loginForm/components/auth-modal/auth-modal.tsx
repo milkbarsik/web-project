@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import { useAuth } from "../../../../api/store/useAuth";
 import styles from './auth-modal.module.css'
-
+import { useFetch } from "../../../../api/useFetch";
 import { Form, Input } from 'antd';
+import { AxiosError, AxiosResponse } from "axios";
 
 type props = {
 	setIsAuthModal: (param: boolean) => void;
@@ -14,8 +15,14 @@ const AuthModal:FC<props> = ({setIsAuthModal}) => {
 
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+	const [result, setResult] = useState<any>(null)
 
 	const {login} = useAuth();
+
+	const {fetching, isLoading, error} = useFetch(async () => {
+		const res = await login(username, password);
+		setResult(res.status);
+	})
 
 	return (
 		<div className={styles.wrapper}>
@@ -47,9 +54,20 @@ const AuthModal:FC<props> = ({setIsAuthModal}) => {
 				disabled={
 					(password === '' || username === '')
 				}
-				onClick={() => login(username, password)}>
+				onClick={
+					async () => {
+						setResult('');
+						await fetching();
+				}}>
 				войти
 			</button>
+			<div className={styles.errors}>
+				<p>
+					{isLoading && `Загрузка...`}
+					{result === 401 && 'Неверное имя пользователя или пароль'}
+					{!isLoading && result !== 401 && error && `${error}`}
+				</p>
+			</div>
 			<div className={styles.changeModal}>
 				<h3>Еще не зарегистрированы?</h3>
 				<button onClick={() => setIsAuthModal(false)}>Зарегистрироваться</button>

@@ -2,9 +2,15 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import { authRoutes, notAuthRoutes } from './routes';
 import { useAuth } from '../../api/store/useAuth';
 
-const AppRouter = () => {
+const AppRouter = ({isLoading}: {isLoading: boolean}) => {
 
 	const {isAuth} = useAuth();
+
+	if(isLoading) {
+		return (
+			<h2>Загрузка...</h2>
+		)
+	}
 
 	return (
 		<Routes>

@@ -18,3 +18,9 @@
 	align-items: flex-start;
 	gap: 1rem;
 }
+
+.errors {
+	margin: 0;
+	padding: 2rem;
+	color: black;
+}

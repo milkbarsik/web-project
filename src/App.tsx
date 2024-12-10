@@ -4,7 +4,7 @@ import styles from './App.module.css';
 import AppRouter from './components/appRouter/appRouter'
 import Footer from './components/footer'
 import Header from './components/header'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useQuizObject } from './context/quizContext';
 import { useAuth } from './api/store/useAuth';
 import { ConfigProvider } from 'antd';
@@ -27,16 +27,18 @@ function App() {
 		setAuth
 	} = useAuth();
 
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+
 	useEffect(() => {
 
 		const fetch = async () => {
 			if(localStorage.getItem('token')) {
 					const res = await getUser();
-					console.log(res);
 					if(res?.data.id) {
 						setAuth(true);
 					}
 			}
+			setIsLoading(false);
 		}
 
 		fetch();
@@ -61,7 +63,7 @@ function App() {
 			<div className={styles.wrapper} ref={wrapper}>
 				<Header />
 				<div className={styles.content}>
-					<AppRouter />
+					<AppRouter isLoading={isLoading} />
 				</div>
 				<Footer />
 			</div>

@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { useAuth } from "../../../../api/store/useAuth";
 import { Form, Input } from 'antd';
 import styles from './reg-modal.module.css'
+import { useFetch } from "../../../../api/useFetch";
 
 type props = {
 	setIsAuthModal: (param: boolean) => void;
@@ -13,8 +14,14 @@ const RegModal:FC<props> = ({setIsAuthModal}) => {
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [password2, setPassword2] = useState<string>('');
+	const [result, setResult] = useState<any>(null);
 
 	const {registration} = useAuth();
+
+	const	{fetching, isLoading, error} = useFetch(async () => {
+		const res = await registration(username, password2);
+		setResult(res.status);
+	})
 
 	return (
 		<div className={styles.wrapper}>
@@ -76,11 +83,20 @@ const RegModal:FC<props> = ({setIsAuthModal}) => {
 				(password !== password2) ||
 				(password === '' || password2 === '' || username === '')
 			}
-				onClick={() => {
-					registration(username, password)
+				onClick={
+					async () => {
+						setResult('');
+						await fetching();
 					}}>
 				зарегистрироваться
 			</button>
+			<div className={styles.errors}>
+				<p>
+					{isLoading && `Загрузка...`}
+					{result === 400 && 'Пользователь с таким именем уже существует'}
+					{!isLoading && result !== 401 && error && `${error}`}
+				</p>
+			</div>
 			<div className={styles.changeModal}>
 				<p>Уже зарегистрированы?</p>
 				<button onClick={() => setIsAuthModal(true)}>Войти</button>

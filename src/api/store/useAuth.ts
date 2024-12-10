@@ -8,8 +8,8 @@ type Tauth = {
 	user: Record<string, string>,
 	setAuth: (value: boolean) => void;
 	setUser: (value: any) => void;
-	login: (username: string, password: string) => void;
-	registration: (username: string, password: string) => void;
+	login: (username: string, password: string) => Promise<AxiosResponse>;
+	registration: (username: string, password: string) => Promise<AxiosResponse>;
 	getUser: () => Promise<AxiosResponse<Tuser> | undefined>;
 	logOut: () => void;
 }
@@ -26,30 +26,28 @@ export const useAuth = create<Tauth>((set) => ({
 		set((state) => ({...state, user: value})),
 
 	async login(username: string, password: string) {
-		try {
 			const res = await AuthClass.login(username, password);
-			localStorage.setItem('token', res.data.access);
-			set((state) => ({...state, isAuth: true}));
-		} catch (e) {
-			console.log(e);
-		}
+			try {
+				localStorage.setItem('token', res.data.access);
+				set((state) => ({...state, isAuth: true}));
+			} catch (e) {}
+			return res;
 	},
 
 	async registration(username: string, password: string) {
+		const res = await AuthClass.registration(username, password);
 		try {
-			const res = await AuthClass.registration(username, password);
 			localStorage.setItem('token', res.data.access);
 			set((state) => ({...state, isAuth: true}));
-			console.log(res);
 		} catch (e) {
 			console.log(e);
 		}
+		return res;
 	},
 
 	async getUser() {
 		try {
 			const res = await AuthClass.getUser();
-			console.log(res);
 			return res;
 		} catch (e) {
 			console.log(e);
@@ -57,10 +55,9 @@ export const useAuth = create<Tauth>((set) => ({
 	},
 
 	logOut() {
-		localStorage.removeItem('token');
-		sessionStorage.clear();
 		set((state) => ({...state, isAuth: false}));
-		window.location.reload();
+		localStorage.removeItem('token');
+		setTimeout(() => {sessionStorage.clear();}, 0);
 	}
 
 }))

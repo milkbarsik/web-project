@@ -89,13 +89,9 @@ const MainPage:FC = () => {
 
 			<div ref={quizzesButtons} className={styles.quizButtonsWrapper}>
 				{isLoading && <p>Loading...</p>}
-				{error && !isAuth && <h2>Авторизуйтесь</h2>}
+				{!isAuth && <h2>Авторизуйтесь</h2>}
 				{error && isAuth && <p style={{ color: "red" }}>Error: {error}</p>}
-				{!isLoading && !error && quizes.length > 0 ? (
-					renderQuizButtons()
-				) : (
-					!isLoading && !error && <p>No quizzes available</p>
-				)}
+				{!isLoading && isAuth && !error && quizes.length > 0 && renderQuizButtons()}
 			</div>
 		</div>
 	)

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import $api from "../http";
 
 export default class QuizApi {
@@ -7,13 +8,18 @@ export default class QuizApi {
 		return res.data;
 	}
 
-	static async postAnswer (id: number, answers: Record<string | number, string>):Promise<number> {
+	static async postAnswer (id: number, answers: Record<string | number, string>):Promise<AxiosResponse> {
 		const data = {
 			quiz: id,
 			...answers,
 		}
-		const res = await $api.post('/main/quiz', data);
-		return res.data.res;
+		try {
+			const res = await $api.post('/main/quiz', data);
+			return res;
+		} catch (e: any) {
+			return e;
+		}
+
 	}
 
 	static async getQuestions (id: number) {
