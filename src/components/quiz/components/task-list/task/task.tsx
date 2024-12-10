@@ -32,7 +32,6 @@ const Task:FC<props> = ( {data, quizName} ) => {
 				[data.id]: answer,
 			}))
 		}
-		console.log(sessionStorage.getItem(`quizAnswers${quizId}`));
 	}
 
 	const renderAnswers = ( data: {[key: string]: string | number}) => {

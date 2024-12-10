@@ -5,13 +5,21 @@ import { AuthResponse, Tuser } from "../types";
 export default class AuthClass {
 
 	static async login(username: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-		const res = await $api.post<AuthResponse>('/auth/login', {username, password});
-		return res;
+		try {
+			const res = await $api.post<AuthResponse>('/auth/login', {username, password});
+			return res;
+		} catch (e: any) {
+			return e;
+		}
 	}
 
 	static async registration(username: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-		const res = await $api.post<AuthResponse>('/auth/user', {username, password});
-		return res;
+		try {
+			const res = await $api.post<AuthResponse>('/auth/user', {username, password});
+			return res;
+		} catch (e: any) {
+			return e
+		}
 	}
 
 	static async getUser(): Promise<AxiosResponse> {
