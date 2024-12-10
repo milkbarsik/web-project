@@ -5,9 +5,9 @@ import { Tuser } from "../types";
 
 type Tauth = {
 	isAuth: boolean,
-	user: Record<string, string>,
+	username: string,
 	setAuth: (value: boolean) => void;
-	setUser: (value: any) => void;
+	setUser: (username: string) => void;
 	login: (username: string, password: string) => Promise<AxiosResponse>;
 	registration: (username: string, password: string) => Promise<AxiosResponse>;
 	getUser: () => Promise<AxiosResponse<Tuser> | undefined>;
@@ -17,19 +17,19 @@ type Tauth = {
 export const useAuth = create<Tauth>((set) => ({
 
 	isAuth: false,
-	user: {},
+	username: '',
 
 	setAuth: (value: boolean) => 
 		set((state) => ({...state, isAuth: value})),
 
-	setUser: (value: any) => 
-		set((state) => ({...state, user: value})),
+	setUser: (username: string) => 
+		set((state) => ({...state, username: username})),
 
 	async login(username: string, password: string) {
 			const res = await AuthClass.login(username, password);
 			try {
 				localStorage.setItem('token', res.data.access);
-				set((state) => ({...state, isAuth: true}));
+				set((state) => ({...state, isAuth: true, username: username}));
 			} catch (e) {}
 			return res;
 	},
@@ -38,7 +38,7 @@ export const useAuth = create<Tauth>((set) => ({
 		const res = await AuthClass.registration(username, password);
 		try {
 			localStorage.setItem('token', res.data.access);
-			set((state) => ({...state, isAuth: true}));
+			set((state) => ({...state, isAuth: true, username: username}));
 		} catch (e) {
 			console.log(e);
 		}

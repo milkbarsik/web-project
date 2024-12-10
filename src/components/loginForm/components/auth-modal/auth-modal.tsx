@@ -3,7 +3,6 @@ import { useAuth } from "../../../../api/store/useAuth";
 import styles from './auth-modal.module.css'
 import { useFetch } from "../../../../api/useFetch";
 import { Form, Input } from 'antd';
-import { AxiosError, AxiosResponse } from "axios";
 
 type props = {
 	setIsAuthModal: (param: boolean) => void;

@@ -18,7 +18,7 @@ const Answer:FC<props> = ( {type, answer, saveAnswer, isActive} ) => {
 
 	return (
 		<button
-			style={{ boxShadow: wasRestarted && result !== "..."
+			style={{ boxShadow: result >= 50 && result !== 460 || wasRestarted && result !== -1
 				? isActive === answer
 					? type === "right_answer"
 						? "0 0 20px 10px rgb(88, 255, 163)" // цвет для правильного ответа, если выбран
