@@ -6,6 +6,7 @@ const Header = () => {
 
 	const {
 		isAuth,
+		username,
 		logOut,
 	} = useAuth();
 
@@ -28,7 +29,11 @@ const Header = () => {
 			}
 			{
 				isAuth&&
-				<button style={{marginLeft: "auto"}} onClick={() => logOut()}>logout</button>
+				<div className={styles.user}>
+					<p>{username}</p>
+					<button onClick={() => logOut()}>logout</button>
+				</div>
+				
 			}
 		</div>
 	)

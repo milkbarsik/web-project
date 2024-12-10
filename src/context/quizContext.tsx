@@ -12,7 +12,7 @@ type QuizState = {
   isLocked: boolean;
 	needSend: boolean;
   wasRestarted: boolean;
-	result: string | number;
+	result: number;
   setTimeNow: (value?: number) => void;
   setQuizField: (field: Partial<QuizState>) => void;
   loadQuizObject: (name: string | undefined) => void;
@@ -33,7 +33,7 @@ export const useQuizObject = create<QuizState>()(
       isLocked: true,
 			needSend: false,
       wasRestarted: false,
-			result: "...",
+			result: -1,
 
       setTimeNow: (value?: number) =>
         set((state) => ({ timeNow: value ? value : state.timeNow - 1 }), false, "setTime"),

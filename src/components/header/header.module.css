@@ -9,3 +9,10 @@
 	gap: calc((1vh + 1vw));
 	padding: calc((1vh + 1vw) / 2) calc((1vh + 1vw));
 }
+
+.user {
+	display: flex;
+	align-items: center;
+	gap: calc((1vh + 1vw));
+	margin-left: auto;
+}

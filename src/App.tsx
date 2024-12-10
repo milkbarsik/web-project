@@ -24,7 +24,8 @@ function App() {
 
 	const {
 		getUser,
-		setAuth
+		setAuth,
+		setUser
 	} = useAuth();
 
 	const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -36,6 +37,7 @@ function App() {
 					const res = await getUser();
 					if(res?.data.id) {
 						setAuth(true);
+						setUser(res.data?.username);
 					}
 			}
 			setIsLoading(false);
