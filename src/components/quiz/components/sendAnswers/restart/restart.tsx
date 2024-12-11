@@ -18,7 +18,7 @@ const Restart:FC<props> = ({ name }) => {
 
 	const restart = () => {
 		setQuizField({
-			result: "...",
+			result: -1,
 			timeNow: timeForQuiz,
 			timeQuizEnd: -1,
 			wasSent: false,

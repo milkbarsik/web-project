@@ -21,7 +21,7 @@ const saveParams = (id: string, name: string) => {
 			isLocked: true,
 			needSend: false,
 			wasRestarted: false,
-			result: '...'
+			result: -1
 		}
 		sessionStorage.setItem(`${name}`, JSON.stringify(
 			quizObject
