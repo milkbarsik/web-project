@@ -70,3 +70,27 @@
 	border-top: 1px #202020 solid;
 	border-bottom: 1px #202020 solid;
 }
+
+@media (min-width: 2300px) {
+	.content h3 {
+		font-size: 1.5vw;
+	}
+
+	.content p {
+		font-size: 1.2vw;
+	}
+	
+	.nav {
+		font-size: 1.1vw;
+	}
+
+	.header {
+		font-size: 18vw;
+	}
+}
+
+@media (max-width: 600px) {
+	.header {
+		font-size: 41vw;
+	}
+}

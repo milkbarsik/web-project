@@ -93,7 +93,7 @@ const MainPage:FC = () => {
 				{error && isAuth && <p style={{ color: "red" }}>Error: {error}</p>}
 				{!isLoading && isAuth && !error && quizes.length > 0 && renderQuizButtons()}
 			</div>
-			<p>На прохождение квиза дается вторая попытка если Вы набрали меньше 50 баллов.</p>
+			<p className={styles.quizRetryInfo}>На прохождение квиза дается вторая попытка если Вы набрали меньше 50 баллов.</p>
 		</div>
 	)
 }

@@ -13,3 +13,15 @@
 .result button {
 	border-color: lightgray;
 }
+
+@media (max-width: 510px) {
+	.resultParent {
+		display: flex;
+		justify-content: center;
+	}
+	.result {
+		padding: 3rem;
+		font-size: calc(120% - (1vh + 1vw));
+		width: calc(120% - (1vh + 1vw) * 2);
+	}
+}

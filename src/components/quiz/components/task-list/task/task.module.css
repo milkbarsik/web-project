@@ -6,6 +6,7 @@
 
 .wrapper h1 {
 	margin-bottom: 2rem;
+  font-size: 7vw;
 }
 
 .answers {
@@ -17,4 +18,14 @@
 
 .answers > * {
   transition: all 0.3s ease;
+}
+
+
+@media (max-width: 650px) {
+  .answers {
+    grid-auto-flow: row;
+    gap: 1vh;
+    grid-template-columns: 38vw;
+    justify-content: center;
+  }
 }
