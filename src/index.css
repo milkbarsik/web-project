@@ -38,9 +38,21 @@ button {
   cursor: pointer;
 	transition: 0.2s;
 	height: min-content;
+	user-select: none;
 }
-button:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 0 10px 1px rgb(133, 247, 255);
-	color: rgb(190, 251, 255);
+
+@media screen and (width > 481px) {
+	button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 0 10px 1px rgb(133, 247, 255);
+		color: rgb(190, 251, 255);
+	}
+}
+
+@media screen and (width <= 481px) {
+	button:active {
+		transform: translateY(-2px);
+		box-shadow: 0 0 10px 1px rgb(133, 247, 255);
+		color: rgb(190, 251, 255);
+	}
 }

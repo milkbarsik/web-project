@@ -1,9 +1,9 @@
 import styles from './team-cards.module.css';
 import Card from './card/card';
-import im1 from '../../../assets/Medvedev.jpg';
-import im2 from '../../../assets/Pavluchenko.png';
-import im3 from '../../../assets/Romanikhin.jpg';
-import im4 from '../../../assets/Uvaisov.jpg';
+import im1 from '../../../assets/cards/Medvedev.jpg';
+import im2 from '../../../assets/cards/Pavluchenko.png';
+import im3 from '../../../assets/cards/Romanikhin.jpg';
+import im4 from '../../../assets/cards/Uvaisov.jpg';
 
 const TeamCards = () => {
     const team: Array<Record<string, string>> = [
