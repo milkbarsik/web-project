@@ -6,7 +6,7 @@
 
 .wrapper h1 {
 	margin-bottom: 2rem;
-  font-size: 7vw;
+  font-size: 5rem;
 }
 
 .answers {
@@ -21,11 +21,19 @@
 }
 
 
-@media (max-width: 650px) {
-  .answers {
-    grid-auto-flow: row;
-    gap: 1vh;
-    grid-template-columns: 38vw;
-    justify-content: center;
-  }
+@media screen and (width <= 1024px) {
+	.wrapper h1 {
+		font-size: 4rem;
+	}
+	.answers {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@media screen and (width <= 480px) {
+	.wrapper h1 {
+		font-size: 3rem;
+	}
 }

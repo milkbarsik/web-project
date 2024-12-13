@@ -17,9 +17,26 @@
 	margin-left: auto;
 }
 
-@media (max-width: 428px) {
+.buttonIcon {
+	display: none;
+	border: none;
+	padding: 0;
+}
+
+.buttonIcon img {
+	height: 4rem;
+	width: 4rem;
+}
+
+@media screen and (width <= 1024px) {
 	.wrapper {
-		flex-direction: column;
-		align-items: end;
+		background-color: #ff6969;
+		border-bottom: 1px black solid;
+	}
+	.buttonText {
+		display: none;
+	}
+	.buttonIcon {
+		display: block;
 	}
 }

@@ -13,17 +13,40 @@
 }
 
 .cardsdisplay > * {
-  flex: 1 1 calc(25% - calc((1vh + 1vw) * 5));
-  max-width: calc(25% - calc((1vh + 1vw) * 5));
+  flex: 1 1 calc(25% - calc((1vh + 1vw) * 4) - 2px);
+  max-width: calc(25% - calc((1vh + 1vw) * 4) - 2px);
 }
 
-@media (max-width: 1100px) {
+@media screen and (width <= 1024px) {
 	.cardsdisplay {
-		width: 1100px;
+		padding: calc((1vh + 1vw));
+		gap: calc((1vh + 1vw) * 2);
+		justify-content: center;
+		align-items: normal;
+	}
+	.cardsdisplay > * {
+		flex: 1 1 calc(25% - calc((1vh + 1vw) * 2) - 2px);
+		max-width: calc(25% - calc((1vh + 1vw) * 2) - 2px);
+	}
+}
+
+@media screen and (width <= 900px) {
+	.cardsdisplay {
+		padding: 0;
+	}
+	.cardsdisplay > * {
+		flex: 1 1 calc(40% - calc((1vh + 1vw) * 2) - 2px);
+		max-width: calc(40% - calc((1vh + 1vw) * 2) - 2px);
+	}
+}
+
+@media screen and (width <= 480px) {
+	.cardsdisplay {
 		flex-direction: column;
-    	position: absolute;
-    	top: 640%;
-    	left: 50%;
-    	transform: translateX(-50%) translateY(-50%);
+		align-items: center;
+	}
+	.cardsdisplay > * {
+		flex: 1 1 calc(80% - calc((1vh + 1vw) * 2) - 2px);
+		max-width: calc(80% - calc((1vh + 1vw) * 2) - 2px);
 	}
 }

@@ -71,10 +71,8 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 	const renderResult = (result: number | string) => {
 		if(result === 460) {
 			return (
-				<div className={styles.resultParent}>
-					<div className={styles.result}>
-				<h3>Вы использовали максимальное число попыток</h3>
-			</div>
+				<div className={styles.result}>
+					<h3>Вы использовали максимальное число попыток</h3>
 				</div>
 			)
 		}
