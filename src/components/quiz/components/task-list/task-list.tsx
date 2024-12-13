@@ -44,7 +44,7 @@ const TaskList:FC<props> = ( { name } ) => {
 				{!isLoading && !error && questions.length > 0 ? (
 					renderQuestions()
 				) : (
-					!isLoading && !error && <p>No quizzes available</p>
+					!isLoading && !error && <p>Нет доступных квизов</p>
 				)}
 				
 		</div>

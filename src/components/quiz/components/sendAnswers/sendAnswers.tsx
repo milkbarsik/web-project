@@ -71,7 +71,7 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 	const renderResult = (result: number | string) => {
 		if(result === 460) {
 			return (
-				<div>
+				<div className={styles.resultParent}>
 					<div className={styles.result}>
 				<h3>Вы использовали максимальное число попыток</h3>
 			</div>
@@ -81,14 +81,14 @@ const SendAsnwers:FC<props> = ( { name, timer } ) => {
 		return (
 			result !== -1 &&
 			<div className={styles.result}>
-				<h3>You are have scored {result} points</h3>
+				<h3>Вы набрали {result} очков</h3>
 			</div>
 		)
 	}
 	return (
 		<div>
 			{!wasSent && <button disabled={result !== -1} onClick={async () => sendResult()}>
-					send
+					Отправить
 			</button>}
 			{isLoadingPost && <p>Loading...</p>}
 			{errorPost && result !== 460 && <p style={{ color: "red" }}>Error: {errorPost}</p>}

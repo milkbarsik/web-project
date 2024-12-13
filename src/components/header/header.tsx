@@ -13,10 +13,10 @@ const Header = () => {
 	return (
 		<div className={styles.wrapper}>
 			<Link to="/">
-				<button>home</button>
+				<button>Описание</button>
 			</Link>
 			<Link to="/#quizzes">
-				<button>quizzes</button>
+				<button>Квизы</button>
 			</Link>
 			{
 				!isAuth&&
@@ -24,14 +24,14 @@ const Header = () => {
 					style={{marginLeft: "auto"}}
 					to="/auth"
 				>
-					<button>login</button>
+					<button>Войти</button>
 				</Link>
 			}
 			{
 				isAuth&&
 				<div className={styles.user}>
 					<p>{username}</p>
-					<button onClick={() => logOut()}>logout</button>
+					<button onClick={() => logOut()}>Выйти</button>
 				</div>
 				
 			}
