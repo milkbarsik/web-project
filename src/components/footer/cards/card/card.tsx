@@ -19,7 +19,7 @@ const Card:FC<props> = ({src, name, height, width}) => {
 					width: `${width}`
 				}}
 			/>
-			<p>{name}</p>
+			<p style={{marginTop: "auto"}}>{name}</p>
 		</div>
 	)
 }

@@ -16,7 +16,7 @@
 }
 
 .preview {
-	width: 40%;
+	width: 50%;
 	text-align: left;
 }
 
@@ -69,4 +69,42 @@
 	align-items: center;
 	border-top: 1px #202020 solid;
 	border-bottom: 1px #202020 solid;
+}
+
+@media screen and (width <= 1024px) {
+	.nav {
+		width: 80%;
+	}
+	.preview {
+		width: 60%;
+	}
+}
+
+@media screen and (width <= 768px) {
+	.nav {
+		width: 100%;
+	}
+	.header {
+		font-size: 18rem;
+	}
+	.section {
+		margin-bottom: 20rem;
+		width: 100%;
+		text-align: justify;
+	}
+}
+
+@media screen and (width <= 480px) {
+	.wrapper {
+		padding: calc((1vh + 1vw) * 2) calc((1vh + 1vw));
+	}
+	.nav {
+		width: 90%;
+	}
+	.preview {
+		width: 60%;
+	}
+	.header {
+		font-size: 13rem;
+	}
 }

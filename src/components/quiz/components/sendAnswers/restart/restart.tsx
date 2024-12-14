@@ -35,7 +35,7 @@ const Restart:FC<props> = ({ name }) => {
 		<div>
 			{!wasRestarted && <button onClick={
 				() => {restart()}
-				}>restart</button>}
+				}>Повторить</button>}
 		</div>
 	)
 }

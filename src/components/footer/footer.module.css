@@ -1,6 +1,16 @@
 .wrapper {
+	padding: calc((1vh + 1vw) * 2);
 	background-color: transparent;
 	width: 100%;
 	margin-top: auto;
 	position: relative;
+}
+
+.textWrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: justify;
+	margin-bottom: 5rem;
 }

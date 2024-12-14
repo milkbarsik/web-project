@@ -32,7 +32,7 @@ const AuthModal:FC<props> = ({setIsAuthModal}) => {
 				autoComplete="off"
 				layout="vertical"
 			>
-				<Form.Item label="Username" name="username" rules={[{ required: true }]}>
+				<Form.Item label="Имя пользователя" name="username" rules={[{ required: true }]}>
 					<Input
 						style={{padding: "0.6rem 1rem", fontSize: "2rem"}}
 						value={username}
@@ -40,7 +40,7 @@ const AuthModal:FC<props> = ({setIsAuthModal}) => {
 					/>
 				</Form.Item>
 
-				<Form.Item label="Password" name="password" rules={[{ required: true }]}>
+				<Form.Item label="Пароль" name="password" rules={[{ required: true }]}>
 					<Input.Password
 						style={{padding: "0.6rem 1rem", fontSize: "2rem"}}
 						value={password}
@@ -58,7 +58,7 @@ const AuthModal:FC<props> = ({setIsAuthModal}) => {
 						setResult('');
 						await fetching();
 				}}>
-				войти
+				Войти
 			</button>
 			<div className={styles.errors}>
 				<p>
