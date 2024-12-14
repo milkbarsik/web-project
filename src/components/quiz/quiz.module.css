@@ -9,6 +9,7 @@
 	right: 15%;
 	font-weight: 700;
 	font-size: 4rem;
+	z-index: 10;
 }
 
 .header {
@@ -37,4 +38,46 @@
 	align-items: center;
 	height: 100%;
 	width: 100%;
+}
+
+@media screen and (width <= 1024px) {
+	.wrapper {
+		width: 75%;
+	}
+	.time {
+		right: 5%;
+	}
+	.header {
+		font-size: 8rem;
+	}
+}
+
+@media screen and (width <= 768px) {
+	.wrapper main {
+		border: none;
+		padding: calc((1vh + 1vw) * 2);
+	}
+	.time {
+		right: 0%;
+		margin-right: 1rem;
+		font-size: 3rem;
+	}
+}
+
+@media screen and (width <= 480px) {
+	.wrapper {
+		width: 90%;
+	}
+	.time {
+		right: 0%;
+		margin-right: 0;
+		margin-top: 10rem;
+		font-weight: 500;
+		font-size: 3rem;
+		writing-mode: vertical-lr;
+		transform: rotateZ(180deg);
+	}
+	.header {
+		font-size: 6rem;
+	}
 }

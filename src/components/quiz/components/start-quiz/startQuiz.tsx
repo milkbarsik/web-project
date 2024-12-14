@@ -28,7 +28,7 @@ const StartQuiz:FC<props> = ( {name, changeTime} ) => {
 
 	return (
 		<div>
-			<button onClick={() => start()}>start quiz</button>
+			<button onClick={() => start()}>Начать</button>
 		</div>
 	)
 }

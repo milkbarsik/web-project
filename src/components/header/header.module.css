@@ -16,3 +16,27 @@
 	gap: calc((1vh + 1vw));
 	margin-left: auto;
 }
+
+.buttonIcon {
+	display: none;
+	border: none;
+	padding: 0;
+}
+
+.buttonIcon img {
+	height: 4rem;
+	width: 4rem;
+}
+
+@media screen and (width <= 1024px) {
+	.wrapper {
+		background-color: #ff6969;
+		border-bottom: 1px black solid;
+	}
+	.buttonText {
+		display: none;
+	}
+	.buttonIcon {
+		display: block;
+	}
+}
