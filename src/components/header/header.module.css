@@ -15,6 +15,9 @@
 	align-items: center;
 	gap: calc((1vh + 1vw));
 	margin-left: auto;
+	text-shadow: none;
+	font-weight: 500;
+	font-size: 2rem;
 }
 
 .buttonIcon {
@@ -30,7 +33,7 @@
 
 @media screen and (width <= 1024px) {
 	.wrapper {
-		background-color: #ff6969;
+		background-color: rgb(133, 247, 255);
 		border-bottom: 1px black solid;
 	}
 	.buttonText {
@@ -38,5 +41,8 @@
 	}
 	.buttonIcon {
 		display: block;
+	}
+	.user {
+		color: black;
 	}
 }

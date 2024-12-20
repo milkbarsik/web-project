@@ -1,3 +1,11 @@
+.wrapper {
+	margin-bottom: calc((1vh + 1vw) * 4);
+}
+
+.wrapper h2 {
+	margin-bottom: calc((1vh + 1vw) * 2);
+}
+
 .cardsdisplay {
 	display: flex;
 	flex-wrap: wrap;
@@ -13,6 +21,7 @@
 
 @media screen and (width <= 1024px) {
 	.cardsdisplay {
+		padding: calc((1vh + 1vw));
 		gap: calc((1vh + 1vw) * 2);
 		justify-content: center;
 		align-items: normal;
@@ -24,6 +33,9 @@
 }
 
 @media screen and (width <= 900px) {
+	.cardsdisplay {
+		padding: 0;
+	}
 	.cardsdisplay > * {
 		flex: 1 1 calc(40% - calc((1vh + 1vw) * 2) - 2px);
 		max-width: calc(40% - calc((1vh + 1vw) * 2) - 2px);
