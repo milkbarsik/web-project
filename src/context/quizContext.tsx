@@ -1,18 +1,18 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 type QuizState = {
   id: number | null;
   questions: Array<Record<string, string | number>>;
   timeForQuiz: number;
-	timeQuizEnd: number
+  timeQuizEnd: number;
   timeNow: number;
   wasSent: boolean;
   isStarted: boolean;
   isLocked: boolean;
-	needSend: boolean;
+  needSend: boolean;
   wasRestarted: boolean;
-	result: number;
+  result: number;
   setTimeNow: (value?: number) => void;
   setQuizField: (field: Partial<QuizState>) => void;
   loadQuizObject: (name: string | undefined) => void;
@@ -26,28 +26,27 @@ export const useQuizObject = create<QuizState>()(
       id: null,
       questions: [],
       timeForQuiz: 180,
-			timeQuizEnd: -1,
-  		timeNow: 180,
+      timeQuizEnd: -1,
+      timeNow: 180,
       wasSent: false,
       isStarted: false,
       isLocked: true,
-			needSend: false,
+      needSend: false,
       wasRestarted: false,
-			result: -1,
+      result: -1,
 
       setTimeNow: (value?: number) =>
-        set((state) => ({ timeNow: value ? value : state.timeNow - 1 }), false, "setTime"),
+        set((state) => ({ timeNow: value ? value : state.timeNow - 1 }), false, 'setTime'),
 
-      setQuizField: (field) =>
-        set((state) => ({ ...state, ...field }), false, "setQuizField"),
+      setQuizField: (field) => set((state) => ({ ...state, ...field }), false, 'setQuizField'),
 
       loadQuizObject: (name: string | undefined) => {
         const data = sessionStorage.getItem(`${name}`);
         if (data) {
           const quizObject = JSON.parse(data);
-          set(() => ({ ...quizObject }), false, "loadQuizObject");
+          set(() => ({ ...quizObject }), false, 'loadQuizObject');
         }
-				return get();
+        return get();
       },
 
       saveQuizObject: (name: string | undefined) => {
@@ -68,9 +67,9 @@ export const useQuizObject = create<QuizState>()(
             wasRestarted: false,
           }),
           false,
-          "resetQuiz"
+          'resetQuiz',
         ),
     }),
-    { name: "QuizStore" } // Название состояния для отображения в DevTools
-  )
+    { name: 'QuizStore' }, // Название состояния для отображения в DevTools
+  ),
 );

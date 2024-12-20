@@ -1,28 +1,28 @@
 .card {
-	background-color: transparent;
-	transition: 0.2s;
-	border: none;
-	border-radius: 8px;
-	padding: 1rem; 
+  background-color: transparent;
+  transition: 0.2s;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .image {
-	border-radius: 8px;
-	margin-bottom: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 @media screen and (width > 768px) {
-	.card:hover {
-		box-shadow: 0 0 10px 1px rgb(133, 247, 255);
-		color: rgb(133, 247, 255);
-		transform: translateY(-10px);
-	}
+  .card:hover {
+    box-shadow: 0 0 10px 1px rgb(133, 247, 255);
+    color: rgb(133, 247, 255);
+    transform: translateY(-10px);
+  }
 }
 
 @media screen and (width <= 768px) {
-	.card:active {
-		box-shadow: 0 0 10px 1px rgb(133, 247, 255);
-		color: rgb(133, 247, 255);
-		transform: translateY(-10px);
-	}
+  .card:active {
+    box-shadow: 0 0 10px 1px rgb(133, 247, 255);
+    color: rgb(133, 247, 255);
+    transform: translateY(-10px);
+  }
 }
