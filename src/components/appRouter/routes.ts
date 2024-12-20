@@ -4,28 +4,28 @@ import Quiz from '../quiz';
 import Modal from '../loginForm';
 
 type Troutes = {
-	Component: React.FC<any>;
-	path: string;
-}
+  Component: React.FC<any>;
+  path: string;
+};
 
-export const authRoutes:Troutes[] = [
-	{
-		Component: MainPage,
-		path: '/'
-	},
-	{
-		Component: Quiz,
-		path: '/quiz/:name',
-	},
-]
+export const authRoutes: Troutes[] = [
+  {
+    Component: MainPage,
+    path: '/',
+  },
+  {
+    Component: Quiz,
+    path: '/quiz/:name',
+  },
+];
 
-export const notAuthRoutes:Troutes[] = [
-	{
-		Component: MainPage,
-		path: '/'
-	},
-	{
-		Component: Modal,
-		path: '/auth'
-	}
-]
+export const notAuthRoutes: Troutes[] = [
+  {
+    Component: MainPage,
+    path: '/',
+  },
+  {
+    Component: Modal,
+    path: '/auth',
+  },
+];

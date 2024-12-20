@@ -1,28 +1,21 @@
-import {Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { authRoutes, notAuthRoutes } from './routes';
 import { useAuth } from '../../api/store/useAuth';
 
-const AppRouter = ({isLoading}: {isLoading: boolean}) => {
+const AppRouter = ({ isLoading }: { isLoading: boolean }) => {
+  const { isAuth } = useAuth();
 
-	const {isAuth} = useAuth();
+  if (isLoading) {
+    return <h2>Загрузка...</h2>;
+  }
 
-	if(isLoading) {
-		return (
-			<h2>Загрузка...</h2>
-		)
-	}
-
-	return (
-		<Routes>
-			{isAuth && authRoutes.map( ({path, Component}) => 
-				<Route key={path} path={path} element={<Component />} />
-			)}
-			{!isAuth && notAuthRoutes.map( ({path, Component}) => 
-				<Route key={path} path={path} element={<Component />} />
-			)}
-			 <Route path='*' element={<Navigate to={'/'}/>} />
-		</Routes>
-	)
-}
+  return (
+    <Routes>
+      {isAuth && authRoutes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
+      {!isAuth && notAuthRoutes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
+      <Route path="*" element={<Navigate to={'/'} />} />
+    </Routes>
+  );
+};
 
 export default AppRouter;
