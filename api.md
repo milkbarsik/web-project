@@ -11,8 +11,8 @@ auth/login/ запрашивает JWT токен. В теле запроса н
 POST REQUEST http://example.com/auth/login
 json_body:
 {
-"username": "butakova_pizda", 
-"password": "da_da_yapizda"
+"username": "user", 
+"password": "password"
 }
 RESPONSE
 {
