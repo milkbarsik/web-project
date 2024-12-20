@@ -22,13 +22,14 @@
 
 .quizHeadButtons {
 	padding: 0 2rem;
-	border-bottom: 2px #202020 solid;
+	border-bottom: 2px rgb(220, 220, 220) solid;
 }
 
 .header {
 	font-weight: 400;
 	font-size: 26rem;
 	margin-bottom: 10rem;
+	text-shadow: 5px 15px 15px rgba(133, 247, 255, 0.5)
 }
 
 .content {
@@ -48,7 +49,20 @@
 }
 
 #knowlege {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#knowlege img {
+	transform: rotateY(180deg);
+}
+
+#knowlegeContent {
 	align-self: self-end;
+	width: 65%;
+	text-align: left;
 }
 
 .content h3 {
@@ -67,8 +81,8 @@
 	gap: calc((1vh + 1vw));
 	justify-content: center;
 	align-items: center;
-	border-top: 1px #202020 solid;
-	border-bottom: 1px #202020 solid;
+	border-top: 1px rgb(220, 220, 220) solid;
+	border-bottom: 1px rgb(220, 220, 220) solid;
 }
 
 @media screen and (width <= 1024px) {
@@ -91,6 +105,13 @@
 		margin-bottom: 20rem;
 		width: 100%;
 		text-align: justify;
+	}
+	#knowlegeContent {
+		width: 100%;
+		text-align: justify;
+}
+	#knowlege img {
+		display: none;
 	}
 }
 

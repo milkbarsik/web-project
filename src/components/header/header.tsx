@@ -23,7 +23,7 @@ const Header = () => {
 				<button className={styles.buttonText}>Домашняя</button>
 				<button className={styles.buttonIcon}><img src={home} alt="" /></button>
 			</Link>
-			<Link to="https://sign-translator.ru">
+			<Link to="https://sign-translator.ru/public">
 				<button className={styles.buttonText}>Переводчик</button>
 				<button className={styles.buttonIcon}><img src={translator} alt="" /></button>
 			</Link>

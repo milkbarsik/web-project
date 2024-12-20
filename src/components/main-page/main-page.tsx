@@ -4,6 +4,7 @@ import { useFetch } from "../../api/useFetch";
 import QuizeApi from "../../api/main/main";
 import QuizButton from "./components";
 import hello from '../../assets/hello.gif';
+import dance from '../../assets/dance.gif';
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../api/store/useAuth";
 
@@ -51,9 +52,10 @@ const MainPage:FC = () => {
 					Язык жестов — легко и увлекательно! Пройди квизы и узнай больше.
 				</p>
 				<div className={styles.quizHeadButtons}>
-					<img style={{
-						width: "calc((1vh + 1vw) * 4)"
-					}} src={hello} alt="" />
+					<img 
+						style={{width: "calc((1vh + 1vw) * 4)"}}
+						src={hello} alt=""
+					/>
 				</div>
 			</nav>
 			<header className={styles.header}>
@@ -71,12 +73,18 @@ const MainPage:FC = () => {
 					</p>
 				</section>
 				<section id={styles.knowlege} className={styles.section}>
-					<h3>На этом сайте вы можете проверить свои знания языка жестов с помощью подготовленных нашей командой Квизов.</h3>
-					<p>
-						В формате квизов, вы можете проверить свои знания разных жестовых языков
-						(на данный момент это: русский, английский и бангладешский).
-						Такой формат упрощает обучение и делает его более запоминающимся.
-					</p>
+					<img 
+						style={{width: "calc((1vh + 1vw) * 4)"}} 
+						src={dance} alt=""
+					/>
+					<div id={styles.knowlegeContent}>
+						<h3>На этом сайте вы можете проверить свои знания языка жестов с помощью подготовленных нашей командой Квизов.</h3>
+						<p>
+							В формате квизов, вы можете проверить свои знания разных жестовых языков
+							(на данный момент это: русский, английский и бангладешский).
+							Такой формат упрощает обучение и делает его более запоминающимся.
+						</p>
+					</div>
 				</section>
 				<section id={styles.thems} className={styles.section}>
 					<h3>Темы квизов</h3>
