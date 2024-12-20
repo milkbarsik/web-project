@@ -3,8 +3,8 @@ import styles from './main-page.module.css';
 import { useFetch } from '../../api/useFetch';
 import QuizeApi from '../../api/main/main';
 import QuizButton from './components';
-import hello from '../../assets/hello.gif';
-import dance from '../../assets/dance.gif';
+import hello from '../../assets/main-page/hello.gif';
+import dance from '../../assets/main-page/dance.gif';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../api/store/useAuth';
 

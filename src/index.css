@@ -7,7 +7,7 @@
   color: rgb(220, 220, 220);
   text-shadow: 0 5px 10px black;
   background: linear-gradient(110deg, rgb(65, 30, 30), rgb(0, 49, 61));
-  background: url('./assets/background_blur.png');
+  background: url('./assets/background.png');
   background-position: 0 0;
   background-size: cover;
   background-repeat: no-repeat;
