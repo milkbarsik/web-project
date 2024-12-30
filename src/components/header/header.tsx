@@ -20,7 +20,7 @@ const Header = () => {
           <img src={home} alt="" />
         </button>
       </Link>
-      <Link to="https://sign-translator.ru/public">
+      <Link to="https://sign-translator.ru/">
         <button className={styles.buttonText}>Переводчик</button>
         <button className={styles.buttonIcon}>
           <img src={translator} alt="" />
