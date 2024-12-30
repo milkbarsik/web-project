@@ -1,9 +1,17 @@
+.wrapper {
+  margin-bottom: calc((1vh + 1vw) * 4);
+}
+
+.wrapper h2 {
+  margin-bottom: calc((1vh + 1vw) * 2);
+}
+
 .cardsdisplay {
-	display: flex;
-	flex-wrap: wrap;
-	gap: calc((1vh + 1vw) * 5);
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc((1vh + 1vw) * 5);
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cardsdisplay > * {
@@ -12,31 +20,35 @@
 }
 
 @media screen and (width <= 1024px) {
-	.cardsdisplay {
-		gap: calc((1vh + 1vw) * 2);
-		justify-content: center;
-		align-items: normal;
-	}
-	.cardsdisplay > * {
-		flex: 1 1 calc(25% - calc((1vh + 1vw) * 2) - 2px);
-		max-width: calc(25% - calc((1vh + 1vw) * 2) - 2px);
-	}
+  .cardsdisplay {
+    padding: calc((1vh + 1vw));
+    gap: calc((1vh + 1vw) * 2);
+    justify-content: center;
+    align-items: normal;
+  }
+  .cardsdisplay > * {
+    flex: 1 1 calc(25% - calc((1vh + 1vw) * 2) - 2px);
+    max-width: calc(25% - calc((1vh + 1vw) * 2) - 2px);
+  }
 }
 
 @media screen and (width <= 900px) {
-	.cardsdisplay > * {
-		flex: 1 1 calc(40% - calc((1vh + 1vw) * 2) - 2px);
-		max-width: calc(40% - calc((1vh + 1vw) * 2) - 2px);
-	}
+  .cardsdisplay {
+    padding: 0;
+  }
+  .cardsdisplay > * {
+    flex: 1 1 calc(40% - calc((1vh + 1vw) * 2) - 2px);
+    max-width: calc(40% - calc((1vh + 1vw) * 2) - 2px);
+  }
 }
 
 @media screen and (width <= 480px) {
-	.cardsdisplay {
-		flex-direction: column;
-		align-items: center;
-	}
-	.cardsdisplay > * {
-		flex: 1 1 calc(80% - calc((1vh + 1vw) * 2) - 2px);
-		max-width: calc(80% - calc((1vh + 1vw) * 2) - 2px);
-	}
+  .cardsdisplay {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cardsdisplay > * {
+    flex: 1 1 calc(80% - calc((1vh + 1vw) * 2) - 2px);
+    max-width: calc(80% - calc((1vh + 1vw) * 2) - 2px);
+  }
 }

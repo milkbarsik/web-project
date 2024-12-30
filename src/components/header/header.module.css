@@ -1,42 +1,48 @@
 .wrapper {
-	display: flex;
-	align-items: center;
-	position: sticky;
-	top: 0;
-	width: 100%;
-	background-color: transparent;
-	z-index: 999;
-	gap: calc((1vh + 1vw));
-	padding: calc((1vh + 1vw) / 2) calc((1vh + 1vw));
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 999;
+  gap: calc((1vh + 1vw));
+  padding: calc((1vh + 1vw) / 2) calc((1vh + 1vw));
 }
 
 .user {
-	display: flex;
-	align-items: center;
-	gap: calc((1vh + 1vw));
-	margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: calc((1vh + 1vw));
+  margin-left: auto;
+  text-shadow: none;
+  font-weight: 500;
+  font-size: 2rem;
 }
 
 .buttonIcon {
-	display: none;
-	border: none;
-	padding: 0;
+  display: none;
+  border: none;
+  padding: 0;
 }
 
 .buttonIcon img {
-	height: 4rem;
-	width: 4rem;
+  height: 4rem;
+  width: 4rem;
 }
 
 @media screen and (width <= 1024px) {
-	.wrapper {
-		background-color: #ff6969;
-		border-bottom: 1px black solid;
-	}
-	.buttonText {
-		display: none;
-	}
-	.buttonIcon {
-		display: block;
-	}
+  .wrapper {
+    background-color: rgb(133, 247, 255);
+    border-bottom: 1px black solid;
+  }
+  .buttonText {
+    display: none;
+  }
+  .buttonIcon {
+    display: block;
+  }
+  .user {
+    color: black;
+  }
 }

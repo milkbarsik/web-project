@@ -1,1 +1,1 @@
-export { default } from './team-cards'
+export { default } from './team-cards';

@@ -1,11 +1,11 @@
 .wrapper {
-	z-index: 1;
-	text-align: center;
-	margin-bottom: 7rem;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 7rem;
 }
 
 .wrapper h1 {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
   font-size: 5rem;
 }
 
@@ -20,20 +20,19 @@
   transition: all 0.3s ease;
 }
 
-
 @media screen and (width <= 1024px) {
-	.wrapper h1 {
-		font-size: 4rem;
-	}
-	.answers {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+  .wrapper h1 {
+    font-size: 4rem;
+  }
+  .answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media screen and (width <= 480px) {
-	.wrapper h1 {
-		font-size: 3rem;
-	}
+  .wrapper h1 {
+    font-size: 3rem;
+  }
 }
